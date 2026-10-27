@@ -56,6 +56,64 @@ export function PlusIcon({ className }: IconProps) {
   )
 }
 
+/* ---- icons added for the full nav ---- */
+
+export function LayersIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <path d="M12 3.6l8 4.2-8 4.2-8-4.2 8-4.2z" />
+      <path d="M4 13.2l8 4.2 8-4.2" />
+    </svg>
+  )
+}
+
+export function TerminalIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <rect x="3" y="4.5" width="18" height="15" rx="2.4" />
+      <path d="M7 9.6l2.6 2.4L7 14.4" />
+      <path d="M12.4 14.8h4.2" />
+    </svg>
+  )
+}
+
+export function BookIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <path d="M12 6.4C10.6 5.2 8.8 4.6 6.6 4.6H4v13.2h2.6c2.2 0 4 .6 5.4 1.8 1.4-1.2 3.2-1.8 5.4-1.8H20V4.6h-2.6c-2.2 0-4 .6-5.4 1.8z" />
+      <path d="M12 6.4v13.2" />
+    </svg>
+  )
+}
+
+export function GraduationIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <path d="M12 4.2l9 4.1-9 4.1-9-4.1 9-4.1z" />
+      <path d="M6.5 10.3v4.4c0 1.6 2.5 2.9 5.5 2.9s5.5-1.3 5.5-2.9v-4.4" />
+      <path d="M20.4 9v6.2" />
+    </svg>
+  )
+}
+
+export function HeartIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <path d="M12 20s-7.2-4.4-7.2-9.2A3.9 3.9 0 0112 8.4a3.9 3.9 0 017.2 2.4C19.2 15.6 12 20 12 20z" />
+    </svg>
+  )
+}
+
+export function UserCheckIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <circle cx="10" cy="8" r="3.4" />
+      <path d="M3.6 20.2c0-3.2 2.9-5.8 6.4-5.8 1.2 0 2.3.3 3.3.8" />
+      <path d="M14.6 17.6l1.9 1.9 3.6-3.9" />
+    </svg>
+  )
+}
+
 /**
  * A simple "in" mark drawn for the LinkedIn card. Simple Icons no longer
  * serves a LinkedIn glyph (the CDN returns 404), so this replaces it.

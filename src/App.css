@@ -963,8 +963,12 @@ body::before {
 #about,
 #skills,
 #projects,
+#source-code,
+#ebooks,
+#classes,
 #socials,
 #contact,
+#support,
 #home {
   /* Clears the sticky pill header when a hash link jumps to a section. */
   scroll-margin-top: 96px;
@@ -2077,4 +2081,289 @@ a.contact-line-item:hover {
   width: 20px;
   height: 20px;
   color: #9a9a9a;
+}
+
+/* ========================================
+   ROUND: full nav + preview / empty-state / support sections
+======================================== */
+
+/* ---- Nav: ten items, shrinking in tiers, never dropped ---- */
+
+@media (min-width: 1101px) {
+  .site-header nav {
+    gap: 16px;
+  }
+
+  .site-header nav a {
+    gap: 6px;
+    font-size: 0.86rem;
+  }
+
+  .nav-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1100px) {
+  .site-header nav {
+    gap: 10px;
+  }
+
+  .site-header nav a {
+    gap: 5px;
+    font-size: 0.8rem;
+  }
+
+  .nav-icon {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* Icon-only from here down — labels are kept in the DOM for screen readers
+   via each link's aria-label, never removed from the nav itself. */
+@media (max-width: 1000px) {
+  .site-header nav {
+    gap: 12px;
+  }
+
+  .site-header nav a {
+    gap: 0;
+  }
+
+  .nav-label {
+    display: none;
+  }
+
+  .nav-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-header nav {
+    gap: 5px;
+  }
+
+  .nav-icon {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+@media (max-width: 340px) {
+  .site-header nav {
+    gap: 4px;
+  }
+
+  /* Only at the very smallest widths does the monogram stand alone. */
+  .brand-text {
+    display: none;
+  }
+
+  .brand {
+    gap: 0;
+  }
+}
+
+/* ---- Shared column for the new sections ---- */
+
+.preview-section,
+.classes-section,
+.support-section {
+  width: min(1000px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 0 0 84px;
+}
+
+/* ---- Coming-soon preview cards (Source Code / E-books) ---- */
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.preview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 22px 20px;
+
+  border: 1px dashed rgba(200, 139, 17, 0.4);
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.preview-icon {
+  display: grid;
+  place-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 12px;
+
+  background: rgba(200, 139, 17, 0.12);
+  color: var(--accent);
+}
+
+.preview-glyph {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.preview-chip {
+  align-self: flex-start;
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  background: rgba(200, 139, 17, 0.12);
+  color: var(--gold-dark);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.preview-card h3 {
+  margin: 0;
+  color: var(--card-title);
+  font-size: 1rem;
+}
+
+.preview-note {
+  margin-top: auto;
+  color: var(--gold-dark);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* ---- Classes empty state ---- */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 38px;
+  padding: 46px 28px;
+
+  border: 1px dashed rgba(200, 139, 17, 0.4);
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.6);
+
+  text-align: center;
+}
+
+.empty-icon {
+  display: grid;
+  place-items: center;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 16px;
+
+  background: rgba(200, 139, 17, 0.12);
+  color: var(--accent);
+}
+
+.empty-icon svg {
+  display: block;
+  width: 26px;
+  height: 26px;
+}
+
+.empty-title {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.empty-copy {
+  max-width: 460px;
+  font-size: 0.9rem;
+}
+
+/* ---- Support strip (directly above the footer) ---- */
+
+.support-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+
+  padding: 40px 28px;
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 14px 40px rgba(35, 29, 19, 0.07);
+
+  text-align: center;
+}
+
+.support-panel .section-head .section-intro {
+  max-width: 520px;
+}
+
+.support-placeholder {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 11px 20px;
+
+  border: 1px dashed rgba(200, 139, 17, 0.5);
+  border-radius: 999px;
+
+  color: var(--gold-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.support-icon {
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .preview-section,
+  .classes-section,
+  .support-section {
+    width: calc(100% - 40px);
+    padding: 0 0 62px;
+  }
+
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .empty-state,
+  .support-panel {
+    padding: 32px 20px;
+  }
 }

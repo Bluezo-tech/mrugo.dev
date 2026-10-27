@@ -4,12 +4,27 @@ import Layout from './components/Layout'
 import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
 import ProjectsSection from './components/ProjectsSection'
+import PreviewSection from './components/PreviewSection'
+import ClassesSection from './components/ClassesSection'
 import SocialsSection from './components/SocialsSection'
 import ContactSection from './components/ContactSection'
+import SupportSection from './components/SupportSection'
 import { SKILLS } from './data/skills'
-import { BriefcaseIcon, EnvelopeIcon } from './components/Icons'
+import { BriefcaseIcon, EnvelopeIcon, BookIcon, TerminalIcon } from './components/Icons'
 import './App.css'
 import profilePhoto from './assets/images/ugo-profile.jpeg'
+
+const SOURCE_CODE_CARDS = [
+  { title: 'Project package', note: 'TODO: package name and what it contains' },
+  { title: 'Download', note: 'TODO: where it will be available' },
+  { title: 'More to come', note: 'TODO: price, only if you decide to sell' },
+]
+
+const EBOOK_CARDS = [
+  { title: 'First guide', note: 'TODO: title and topic' },
+  { title: 'Reading format', note: 'TODO: PDF, web, or both' },
+  { title: 'More to come', note: 'TODO: price, only if you decide to sell' },
+]
 
 function Home() {
   return (
@@ -88,8 +103,31 @@ function Home() {
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
+
+      <PreviewSection
+        id="source-code"
+        eyebrow="SOURCE CODE"
+        headingBefore="Code drops,"
+        headingGold="coming soon"
+        subline="Once a project is finished and documented, the full code will be shared here. Nothing is available to download yet."
+        cards={SOURCE_CODE_CARDS}
+        Icon={TerminalIcon}
+      />
+
+      <PreviewSection
+        id="ebooks"
+        eyebrow="E-BOOKS"
+        headingBefore="Guides,"
+        headingGold="coming soon"
+        subline="Practical write-ups from the things I build. No books are published yet."
+        cards={EBOOK_CARDS}
+        Icon={BookIcon}
+      />
+
+      <ClassesSection />
       <SocialsSection />
       <ContactSection />
+      <SupportSection />
     </main>
   )
 }
