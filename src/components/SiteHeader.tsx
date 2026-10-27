@@ -1,13 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ComponentType } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Monogram from './Monogram'
+import { BriefcaseIcon, CodeIcon, EnvelopeIcon, PersonIcon } from './Icons'
 
-/** Sections tracked by the scroll spy. Order matters. */
-const SECTION_LINKS = [
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'contact', label: 'Contact' },
-] as const
+type NavItem = {
+  label: string
+  to: string
+  Icon: ComponentType<{ className?: string }>
+  /** Section id used by the scroll spy, or null for the standalone page. */
+  spyId: string | null
+}
+
+const NAV_ITEMS: NavItem[] = [
+  { label: 'About', to: '/#about', Icon: PersonIcon, spyId: 'about' },
+  { label: 'Skills', to: '/#skills', Icon: CodeIcon, spyId: 'skills' },
+  { label: 'Experience', to: '/experience', Icon: BriefcaseIcon, spyId: null },
+  { label: 'Contact', to: '/#contact', Icon: EnvelopeIcon, spyId: 'contact' },
+]
+
+const SPY_SECTIONS = NAV_ITEMS.flatMap((item) =>
+  item.spyId ? [{ id: item.spyId, label: item.label }] : [],
+)
 
 function SiteHeader() {
   const { pathname } = useLocation()
@@ -17,13 +30,13 @@ function SiteHeader() {
   const onExperience = pathname === '/experience'
   const active = onHome ? activeSection : ''
 
-  // Scroll spy: highlight the nav link for whichever section is under the
+  // Scroll spy: highlight the nav item for whichever section is under the
   // reading line. Pure enhancement — links work with or without it.
   useEffect(() => {
     if (!onHome) return
 
-    const sections = SECTION_LINKS.map((link) =>
-      document.getElementById(link.id),
+    const sections = SPY_SECTIONS.map((section) =>
+      document.getElementById(section.id),
     ).filter((element): element is HTMLElement => element !== null)
 
     if (sections.length === 0) return
@@ -50,7 +63,6 @@ function SiteHeader() {
       setActiveSection(current)
     }
 
-    // Deferred so the first paint is not interrupted by a state update.
     const frame = window.requestAnimationFrame(updateActive)
 
     window.addEventListener('scroll', updateActive, { passive: true })
@@ -71,37 +83,25 @@ function SiteHeader() {
       </Link>
 
       <nav aria-label="Main navigation">
-        <Link
-          to="/#about"
-          className={active === 'about' ? 'is-active' : undefined}
-          aria-current={active === 'about' ? 'location' : undefined}
-        >
-          About
-        </Link>
+        {NAV_ITEMS.map(({ label, to, Icon, spyId }) => {
+          const isExperience = spyId === null
+          const isActive = isExperience ? onExperience : active === spyId
 
-        <Link
-          to="/#skills"
-          className={active === 'skills' ? 'is-active' : undefined}
-          aria-current={active === 'skills' ? 'location' : undefined}
-        >
-          Skills
-        </Link>
-
-        <Link
-          to="/experience"
-          className={onExperience ? 'is-active' : undefined}
-          aria-current={onExperience ? 'page' : undefined}
-        >
-          Experience
-        </Link>
-
-        <Link
-          to="/#contact"
-          className={active === 'contact' ? 'is-active' : undefined}
-          aria-current={active === 'contact' ? 'location' : undefined}
-        >
-          Contact
-        </Link>
+          return (
+            <Link
+              key={label}
+              to={to}
+              className={isActive ? 'is-active' : undefined}
+              aria-current={
+                isActive ? (isExperience ? 'page' : 'location') : undefined
+              }
+              aria-label={label}
+            >
+              <Icon className="nav-icon" />
+              <span className="nav-label">{label}</span>
+            </Link>
+          )
+        })}
       </nav>
     </header>
   )

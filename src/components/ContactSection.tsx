@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { CONTACT } from '../data/content'
+import { ClockIcon, EnvelopeIcon } from './Icons'
 
 const MAX_MESSAGE = 5000
 
@@ -34,33 +35,21 @@ function ContactSection() {
           Let's <span className="gold-text">work together</span>
         </h2>
         <p className="section-intro">
-          Have a project, a role, or an idea to talk through? Send a message and
-          I'll get back to you.
+          Have a project or an idea to talk through? Send a message and I'll get
+          back to you.
         </p>
       </div>
 
-      <div className="contact-details">
-        <a className="contact-card" href={`mailto:${CONTACT.email}`}>
-          <span className="contact-card-label">Email</span>
-          <span className="contact-card-value">{CONTACT.email}</span>
-          <span className="contact-card-mark" aria-hidden="true">
-            ↗
-          </span>
+      <p className="contact-line">
+        <a className="contact-line-item" href={`mailto:${CONTACT.email}`}>
+          <EnvelopeIcon className="contact-line-icon" />
+          <span>{CONTACT.email}</span>
         </a>
-
-        <a
-          className="contact-card"
-          href={CONTACT.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span className="contact-card-label">WhatsApp</span>
-          <span className="contact-card-value">Message me directly</span>
-          <span className="contact-card-mark" aria-hidden="true">
-            ↗
-          </span>
-        </a>
-      </div>
+        <span className="contact-line-item">
+          <ClockIcon className="contact-line-icon" />
+          <span>{CONTACT.replyTime}</span>
+        </span>
+      </p>
 
       <form className="contact-form" onSubmit={handleSubmit}>
         <div className="form-columns">
@@ -120,12 +109,12 @@ function ContactSection() {
                 onChange={(event) => setSubject(event.target.value)}
               />
             </label>
+
+            <button className="form-submit" type="submit">
+              Send message <span aria-hidden="true">↗</span>
+            </button>
           </div>
         </div>
-
-        <button className="form-submit form-submit-wide" type="submit">
-          Send message <span aria-hidden="true">↗</span>
-        </button>
 
         <p className="form-note">
           This opens your own email app with the message ready to send. Nothing

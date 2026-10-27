@@ -1,4 +1,34 @@
+import type { CSSProperties } from 'react'
 import { SOCIALS } from '../data/content'
+import { PlusIcon } from './Icons'
+
+function SocialIconSquare({
+  slug,
+  color,
+  tint,
+}: {
+  slug?: string
+  color?: string
+  tint?: string
+}) {
+  return (
+    <span
+      className="social-icon-square"
+      style={{ background: tint } as CSSProperties}
+      aria-hidden="true"
+    >
+      {slug ? (
+        <img
+          src={`https://cdn.simpleicons.org/${slug}/${color ?? '9a9a9a'}`}
+          alt=""
+          loading="lazy"
+        />
+      ) : (
+        <PlusIcon className="social-plus-icon" />
+      )}
+    </span>
+  )
+}
 
 function SocialsSection() {
   return (
@@ -6,11 +36,11 @@ function SocialsSection() {
       <div className="section-head">
         <p className="section-label">LET'S CONNECT</p>
         <h2>
-          Find me <span className="gold-text">online</span>
+          Find me on <span className="gold-text">social media</span>
         </h2>
         <p className="section-intro">
-          Where you can reach me or follow the work. Only accounts I actually use
-          appear as links.
+          Follow along for the projects I'm building, what I'm learning, and the
+          work behind them.
         </p>
       </div>
 
@@ -18,11 +48,16 @@ function SocialsSection() {
         {SOCIALS.map((social) =>
           social.todo || !social.href ? (
             <div className="social-card is-todo" key={social.id}>
-              <div className="social-card-text">
-                <p className="social-name">{social.label}</p>
-                <p className="social-detail">{social.detail}</p>
-              </div>
-              <span className="social-mark" aria-hidden="true">
+              <SocialIconSquare
+                slug={social.iconSlug}
+                color={social.iconColor}
+                tint={social.tint}
+              />
+              <span className="social-card-text">
+                <span className="social-name">{social.label}</span>
+                <span className="social-detail">{social.detail}</span>
+              </span>
+              <span className="social-mark is-todo-mark" aria-hidden="true">
                 TODO
               </span>
             </div>
@@ -34,10 +69,15 @@ function SocialsSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="social-card-text">
-                <p className="social-name">{social.label}</p>
-                <p className="social-detail">{social.detail}</p>
-              </div>
+              <SocialIconSquare
+                slug={social.iconSlug}
+                color={social.iconColor}
+                tint={social.tint}
+              />
+              <span className="social-card-text">
+                <span className="social-name">{social.label}</span>
+                <span className="social-detail">{social.detail}</span>
+              </span>
               <span className="social-mark" aria-hidden="true">
                 ↗
               </span>

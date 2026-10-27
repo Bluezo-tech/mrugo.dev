@@ -1,8 +1,8 @@
 type MonogramProps = {
-  /** 'gold' sits on the cream page, 'light' sits on the dark footer. */
-  variant?: 'gold' | 'light'
+  /** 'gold' on the cream page, 'white' disc for the dark footer bar. */
+  variant?: 'gold' | 'white' | 'light'
   size?: number
-  /** Unique suffix so the two gradients never share an id. */
+  /** Unique suffix so gradients never share an id. */
   idSuffix?: string
 }
 
@@ -12,7 +12,18 @@ type MonogramProps = {
  */
 function Monogram({ variant = 'gold', size = 34, idSuffix = 'a' }: MonogramProps) {
   const gradientId = `monogram-gold-${idSuffix}`
-  const isGold = variant === 'gold'
+
+  const discFill =
+    variant === 'gold'
+      ? '#f3eee3'
+      : variant === 'white'
+        ? '#ffffff'
+        : 'rgba(255, 255, 255, 0.10)'
+
+  const ringStroke =
+    variant === 'light'
+      ? 'rgba(228, 178, 72, 0.45)'
+      : 'rgba(200, 139, 17, 0.35)'
 
   return (
     <svg
@@ -31,18 +42,11 @@ function Monogram({ variant = 'gold', size = 34, idSuffix = 'a' }: MonogramProps
         </linearGradient>
       </defs>
 
-      <circle
-        cx="32"
-        cy="32"
-        r="30"
-        fill={isGold ? '#f3eee3' : 'rgba(255, 255, 255, 0.10)'}
-        stroke={isGold ? 'rgba(200, 139, 17, 0.35)' : 'rgba(228, 178, 72, 0.45)'}
-        strokeWidth="2"
-      />
+      <circle cx="32" cy="32" r="30" fill={discFill} stroke={ringStroke} strokeWidth="2" />
       <path
         d="M21 17v18.6c0 8.1 4.9 12.9 11 12.9s11-4.8 11-12.9V17"
         fill="none"
-        stroke={isGold ? `url(#${gradientId})` : '#e4b248'}
+        stroke={variant === 'light' ? '#e4b248' : `url(#${gradientId})`}
         strokeWidth="6"
         strokeLinecap="round"
       />
