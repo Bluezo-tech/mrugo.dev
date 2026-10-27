@@ -1,28 +1,38 @@
-import { HeartIcon } from './Icons'
+import { Link } from 'react-router-dom'
 
 function SupportSection() {
   return (
-    <section className="support-section" id="support" data-reveal>
-      <div className="support-panel">
-        <div className="section-head">
-          <p className="section-label">SUPPORT</p>
+    // TODO: Ugo's payment link and amounts go here — do not reuse Bayo's tiers
+    <section className="support" id="support" data-reveal>
+      <div className="support-row">
+        <div className="support-text">
           <h2>
-            Support <span className="gold-text">the work</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-heart"
+              aria-hidden="true"
+            >
+              <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
+            </svg>
+            Support the work
           </h2>
-          <p className="section-intro">
-            If something on this site has been useful to you, there will be a way
-            to support the work here soon.
-          </p>
+          <p>If a class, a file or a guide here helped you, chip in whatever you like.</p>
+          <p>Support options coming soon.</p>
         </div>
 
-        <p className="support-placeholder">
-          <HeartIcon className="support-icon" />
-          <span>Support options coming soon</span>
-        </p>
-
-        <p className="todo-note">
-          TODO: add a payment or support link when there is one
-        </p>
+        <div className="support-actions" aria-label="Support with">
+          <Link to="/support" className="support-chip">
+            See support options
+          </Link>
+        </div>
       </div>
     </section>
   )

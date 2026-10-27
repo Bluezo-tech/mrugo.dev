@@ -2171,8 +2171,7 @@ a.contact-line-item:hover {
 /* ---- Shared column for the new sections ---- */
 
 .preview-section,
-.classes-section,
-.support-section {
+.classes-section {
   width: min(1000px, calc(100% - 48px));
   margin: 0 auto;
   padding: 0 0 84px;
@@ -2299,50 +2298,7 @@ a.contact-line-item:hover {
   font-size: 0.9rem;
 }
 
-/* ---- Support strip (directly above the footer) ---- */
-
-.support-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-
-  padding: 40px 28px;
-
-  border: 1px solid var(--border);
-  border-radius: 24px;
-
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 14px 40px rgba(35, 29, 19, 0.07);
-
-  text-align: center;
-}
-
-.support-panel .section-head .section-intro {
-  max-width: 520px;
-}
-
-.support-placeholder {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-
-  padding: 11px 20px;
-
-  border: 1px dashed rgba(200, 139, 17, 0.5);
-  border-radius: 999px;
-
-  color: var(--gold-dark);
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.support-icon {
-  flex: 0 0 auto;
-  width: 17px;
-  height: 17px;
-  color: var(--accent);
-}
+/* ---- Support strip — layout lives in the .support* block at the end ---- */
 
 @media (max-width: 900px) {
   .preview-grid {
@@ -2352,8 +2308,7 @@ a.contact-line-item:hover {
 
 @media (max-width: 760px) {
   .preview-section,
-  .classes-section,
-  .support-section {
+  .classes-section {
     width: calc(100% - 40px);
     padding: 0 0 62px;
   }
@@ -2362,8 +2317,7 @@ a.contact-line-item:hover {
     grid-template-columns: 1fr;
   }
 
-  .empty-state,
-  .support-panel {
+  .empty-state {
     padding: 32px 20px;
   }
 }
@@ -2777,10 +2731,6 @@ a.contact-line-item:hover {
     font-size: 0.92rem;
   }
 
-  .support-placeholder {
-    font-size: 0.88rem;
-  }
-
   .form-note,
   .form-count {
     font-size: 0.85rem;
@@ -2799,5 +2749,122 @@ a.contact-line-item:hover {
   .footer-nav a {
     padding: 10px 4px;
     font-size: 0.86rem;
+  }
+}
+
+/* ========================================
+   SUPPORT STRIP (layout for the supplied markup)
+======================================== */
+
+.support {
+  width: min(1200px, 88%);
+  margin: 0 auto;
+  padding: 8px 0 54px;
+}
+
+.support-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  padding: 28px 30px;
+
+  border: 1px solid var(--border);
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 14px 40px rgba(35, 29, 19, 0.07);
+}
+
+.support-text h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin: 0 0 10px;
+
+  /* Same scale as every other section heading: 36px desktop / 30px phone */
+  font-size: clamp(1.875rem, 3.9vw, 2.25rem);
+  line-height: 1.15;
+  color: var(--text-h);
+}
+
+.support-text h2 svg {
+  flex: 0 0 auto;
+  width: 0.7em;
+  height: 0.7em;
+  color: var(--accent);
+}
+
+.support-text p {
+  max-width: 560px;
+
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.support-text p + p {
+  margin-top: 8px;
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.support-actions {
+  flex: 0 0 auto;
+}
+
+.support-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-height: 46px;
+  padding: 0 22px;
+
+  border: 1px solid transparent;
+  border-radius: 999px;
+
+  background: var(--button);
+  color: #fff;
+
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.support-chip:hover {
+  background: var(--button-hover);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
+  transform: translateY(-1px);
+}
+
+.support-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .support-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 22px 20px;
+  }
+
+  .support-actions {
+    width: 100%;
+  }
+
+  .support-chip {
+    width: 100%;
   }
 }
