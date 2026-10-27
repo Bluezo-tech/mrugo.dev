@@ -1,46 +1,7 @@
-import { useEffect, useState, type ComponentType } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Monogram from './Monogram'
-import {
-  BookIcon,
-  BriefcaseIcon,
-  CodeIcon,
-  EnvelopeIcon,
-  GraduationIcon,
-  HeartIcon,
-  LayersIcon,
-  PersonIcon,
-  TerminalIcon,
-  UserCheckIcon,
-} from './Icons'
-
-type NavItem = {
-  label: string
-  to: string
-  Icon: ComponentType<{ className?: string }>
-  /** Homepage section id for the scroll spy, or null (route / duplicate target). */
-  spyId: string | null
-}
-
-/**
- * Full navigation. Every item except Experience points at a homepage section —
- * the separate pages come later. "Hire Me" points at #contact for now and will
- * move to /hire once that page exists.
- */
-const NAV_ITEMS: NavItem[] = [
-  { label: 'About', to: '/#about', Icon: PersonIcon, spyId: 'about' },
-  { label: 'Skills', to: '/#skills', Icon: CodeIcon, spyId: 'skills' },
-  { label: 'Experience', to: '/experience', Icon: BriefcaseIcon, spyId: null },
-  { label: 'Projects', to: '/#projects', Icon: LayersIcon, spyId: 'projects' },
-  { label: 'Source Code', to: '/#source-code', Icon: TerminalIcon, spyId: 'source-code' },
-  { label: 'Classes', to: '/#classes', Icon: GraduationIcon, spyId: 'classes' },
-  { label: 'E-books', to: '/#ebooks', Icon: BookIcon, spyId: 'ebooks' },
-  { label: 'Support', to: '/#support', Icon: HeartIcon, spyId: 'support' },
-  { label: 'Hire Me', to: '/#contact', Icon: UserCheckIcon, spyId: null },
-  { label: 'Contact', to: '/#contact', Icon: EnvelopeIcon, spyId: 'contact' },
-]
-
-const SPY_IDS = NAV_ITEMS.flatMap((item) => (item.spyId ? [item.spyId] : []))
+import { NAV_ITEMS, SPY_IDS } from '../data/navigation'
 
 function SiteHeader() {
   const { pathname } = useLocation()
@@ -52,7 +13,7 @@ function SiteHeader() {
 
   // Scroll spy: highlight the nav item for whichever section is under the
   // reading line. Sections are sorted by page position, because the nav order
-  // (Classes before E-books) differs from the page order.
+  // and the page order are not identical.
   useEffect(() => {
     if (!onHome) return
 

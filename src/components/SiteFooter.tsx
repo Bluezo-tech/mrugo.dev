@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Monogram from './Monogram'
+import { NAV_ITEMS } from '../data/navigation'
 
 // Computed once at module load instead of during render (keeps the render pure).
 const CURRENT_YEAR = new Date().getFullYear()
@@ -18,10 +19,11 @@ function SiteFooter() {
         </p>
 
         <nav className="footer-nav" aria-label="Footer">
-          <Link to="/#about">About</Link>
-          <Link to="/#skills">Skills</Link>
-          <Link to="/experience">Experience</Link>
-          <Link to="/#contact">Contact</Link>
+          {NAV_ITEMS.map(({ label, to }) => (
+            <Link key={label} to={to}>
+              {label}
+            </Link>
+          ))}
         </nav>
       </div>
     </footer>

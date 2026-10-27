@@ -114,6 +114,18 @@ export function UserCheckIcon({ className }: IconProps) {
   )
 }
 
+export function ShareIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <circle cx="17.6" cy="5.6" r="2.6" />
+      <circle cx="6.4" cy="12" r="2.6" />
+      <circle cx="17.6" cy="18.4" r="2.6" />
+      <path d="M8.7 10.8l6.6-3.7" />
+      <path d="M8.7 13.2l6.6 3.7" />
+    </svg>
+  )
+}
+
 /**
  * A simple "in" mark drawn for the LinkedIn card. Simple Icons no longer
  * serves a LinkedIn glyph (the CDN returns 404), so this replaces it.
