@@ -12,7 +12,7 @@ function SkillsSection() {
 
       <div className="skills-grid">
         {SKILL_GROUPS.map((group) => (
-          <article className="skills-card" key={group.title}>
+          <article className="skills-card" key={group.title} data-reveal>
             <h3>{group.title}</h3>
 
             <ul className="skills-list">

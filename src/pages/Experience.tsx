@@ -25,7 +25,7 @@ function Experience() {
 
       <article className="experience-item">
         <div className="experience-details bluezo-experience">
-          <p>Bluezo Tech</p>
+          <h3>Bluezo Tech</h3>
           <p>Founder and Lead Developer</p>
         </div>
         <span className="experience-arrow" aria-hidden="true">↗</span>

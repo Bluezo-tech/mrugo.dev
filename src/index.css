@@ -37,11 +37,12 @@
   /* Surfaces */
   --bg: #f3eee3;
   --surface: rgba(255, 255, 255, 0.72);
-  --border: rgba(0, 0, 0, 0.08);
+  --border: rgba(0, 0, 0, 0.08); /* ~#00000014 */
 
   /* Text */
   --text: #666666;
   --text-h: #111827;
+  --card-title: #1f1f1f;
   --nav: #3d3d3d;
   --muted: #9a9a9a;
 
@@ -50,6 +51,8 @@
   --accent-from: #c99022;
   --accent-mid: #e4b248;
   --accent-to: #c98917;
+  --gold-light: #e4b248;
+  --gold-dark: #8a6a1e;
 
   /* Buttons */
   --button: #111111;
@@ -57,6 +60,9 @@
 
   /* Dark surfaces */
   --dark: #141414;
+  --dark-soft: rgba(20, 20, 20, 0.92);
+  --strip-text: #e7e7e7;
+  --footer-link: #cfcfcf;
 
   /* Type */
   --sans: "Plus Jakarta Sans", Inter, sans-serif;
@@ -110,14 +116,15 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.25rem, 4.6vw, 3.125rem);
+  font-size: clamp(2.25rem, 6vw, 3.125rem);
   line-height: 1.1;
   letter-spacing: -0.04em;
+  word-spacing: 0.05em;
   margin: 0;
 }
 
 h2 {
-  font-size: clamp(1.875rem, 3.2vw, 2.25rem);
+  font-size: clamp(1.875rem, 3.9vw, 2.25rem);
   line-height: 1.2;
   letter-spacing: -0.03em;
   margin: 0 0 1rem;

@@ -68,6 +68,11 @@ main {
   color: var(--accent);
 }
 
+.site-header nav a.is-active {
+  color: var(--accent);
+  font-weight: 700;
+}
+
 /* ========================================
    HERO SECTION
 ======================================== */
@@ -82,9 +87,10 @@ main {
   gap: 48px;
 
   width: min(1240px, calc(100% - 48px));
-  min-height: 540px;
   margin: 0 auto;
-  padding: 64px 24px 72px;
+  padding: clamp(18px, 3vh, 44px) 24px clamp(34px, 5.5vh, 68px);
+
+  scroll-margin-top: 24px;
 }
 
 .hero-content {
@@ -154,7 +160,9 @@ footer .section-label {
 
 .hero-description {
   max-width: 580px;
-  margin-top: 24px;
+  margin-top: 22px;
+  font-size: 1.125rem;
+  line-height: 1.65;
 }
 
 /* Hero buttons */
@@ -315,23 +323,7 @@ footer a:focus-visible {
   box-shadow: 0 14px 38px rgba(0, 0, 0, 0.12);
 }
 
-/* Greeting badge */
-
-.hero-badge {
-  position: relative;
-  z-index: 2;
-
-  padding: 12px 24px;
-
-  border: 1px solid rgba(201, 144, 34, 0.16);
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.92);
-  color: #786b5b;
-  font-size: 0.9rem;
-
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-}
+/* Greeting badge removed: it duplicated the hero eyebrow. */
 
 /* ========================================
    ANIMATED TECHNOLOGY STRIP
@@ -458,7 +450,7 @@ footer h2 {
 .skills-card {
   padding: 24px 22px 22px;
 
-  border: 1px solid rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--border);
   border-radius: 20px;
 
   background: rgba(255, 255, 255, 0.72);
@@ -481,7 +473,7 @@ footer h2 {
 
 .skills-card h3 {
   margin: 0 0 16px;
-  color: #786b5b;
+  color: var(--card-title);
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -502,9 +494,9 @@ footer h2 {
   align-items: center;
   gap: 11px;
 
-  color: var(--text-h);
-  font-size: 0.95rem;
-  font-weight: 600;
+  color: var(--card-title);
+  font-size: 0.9375rem;
+  font-weight: 700;
 }
 
 .skills-icon {
@@ -619,7 +611,7 @@ footer h2 {
 }
 
 .footer-links a {
-  color: #e4b248;
+  color: var(--gold-light);
   text-decoration: none;
   overflow-wrap: anywhere;
   transition: color 0.2s ease;
@@ -630,12 +622,72 @@ footer h2 {
 }
 
 .footer-note {
-  margin-top: 60px;
+  margin-top: 44px;
   padding-top: 22px;
 
   border-top: 1px solid rgba(255, 255, 255, 0.14);
-  color: #9a9a9a;
+  color: var(--muted);
   font-size: 0.82rem;
+}
+
+footer {
+  scroll-margin-top: 24px;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 26px;
+  margin-top: 30px;
+}
+
+.footer-nav a {
+  color: var(--footer-link);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--accent);
+}
+
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 18px;
+  padding: 9px 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--footer-link);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.back-to-top:hover {
+  border-color: rgba(200, 139, 17, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gold-light);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 /* ========================================
@@ -646,8 +698,8 @@ footer h2 {
   .hero-section {
     min-height: auto;
     flex-direction: column-reverse;
-    gap: 24px;
-    padding: 36px 16px 54px;
+    gap: clamp(10px, 2.4vh, 24px);
+    padding: clamp(12px, 2.4vh, 36px) 16px clamp(28px, 5vh, 54px);
     text-align: center;
   }
 
@@ -667,9 +719,11 @@ footer h2 {
     justify-content: center;
   }
 
+  /* Height-capped so a short, narrow window never pushes the headline
+     below the fold — the portrait is first in the stacked order. */
   .hero-right {
-    --disc-size: 210px;
-    --ring-size: 232px;
+    --disc-size: min(210px, 65vw, 30vh);
+    --ring-size: min(232px, 72vw, 33vh);
 
     flex: 0 0 auto;
     width: 100%;
@@ -756,8 +810,8 @@ footer h2 {
   }
 
   .hero-right {
-    --disc-size: min(210px, 65vw);
-    --ring-size: min(232px, 72vw);
+    --disc-size: min(210px, 65vw, 30vh);
+    --ring-size: min(232px, 72vw, 33vh);
   }
 
   .hero-actions {
@@ -883,4 +937,43 @@ body::before {
     );
 
   opacity: 0.8;
+}
+
+/* ========================================
+   ANCHOR OFFSETS
+   Keeps hash links from landing flush against the top edge.
+======================================== */
+
+#about,
+#skills,
+#home {
+  scroll-margin-top: 24px;
+}
+
+/* ========================================
+   SCROLL REVEAL (progressive enhancement)
+   The .reveal class is only ever added by JavaScript, and only when the
+   visitor has not asked for reduced motion. If anything fails, the content
+   stays visible because these rules never apply.
+======================================== */
+
+.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+
+.reveal-ready .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
