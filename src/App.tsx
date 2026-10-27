@@ -15,8 +15,6 @@ function Home() {
     <main>
       <section className="hero-section" id="home">
         <div className="hero-content">
-          <p className="greeting">HELLO, I'M UGO</p>
-
           <h1>
             I build practical <span>digital experiences.</span>
           </h1>
@@ -49,6 +47,8 @@ function Home() {
               alt="Portrait of Ugochukwu"
             />
           </div>
+
+          <p className="hero-bubble">Hello, I'm Ugo.</p>
         </div>
       </section>
 

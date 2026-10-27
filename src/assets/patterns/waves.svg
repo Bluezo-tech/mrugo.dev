@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="180" viewBox="0 0 900 180" fill="none" role="presentation">
+  <!-- Ugochukwu portfolio: own wave-line texture, drawn for this site.
+       Symmetric curves so the tile repeats without a visible seam. -->
+  <g stroke="#c99022" stroke-linecap="round" fill="none">
+    <path d="M0 90 C225 40 675 140 900 90" stroke-opacity="0.22" stroke-width="1.6"/>
+    <path d="M0 56 C225 6 675 106 900 56" stroke-opacity="0.11" stroke-width="1.2"/>
+    <path d="M0 124 C225 74 675 174 900 124" stroke-opacity="0.11" stroke-width="1.2"/>
+  </g>
+  <g stroke="#e4b248" stroke-linecap="round" fill="none">
+    <path d="M0 160 C225 110 675 210 900 160" stroke-opacity="0.10" stroke-width="1.1"/>
+  </g>
+</svg>

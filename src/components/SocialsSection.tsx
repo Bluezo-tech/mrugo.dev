@@ -3,12 +3,16 @@ import { SOCIALS } from '../data/content'
 function SocialsSection() {
   return (
     <section className="socials-section" id="socials" data-reveal>
-      <p className="section-label">LET'S CONNECT</p>
-      <h2>Find me online</h2>
-      <p className="section-intro">
-        Where you can reach me or follow the work. Only accounts I actually use
-        appear as links.
-      </p>
+      <div className="section-head">
+        <p className="section-label">LET'S CONNECT</p>
+        <h2>
+          Find me <span className="gold-text">online</span>
+        </h2>
+        <p className="section-intro">
+          Where you can reach me or follow the work. Only accounts I actually use
+          appear as links.
+        </p>
+      </div>
 
       <div className="socials-grid">
         {SOCIALS.map((social) =>

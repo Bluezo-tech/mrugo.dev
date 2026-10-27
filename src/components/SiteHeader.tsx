@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import Monogram from './Monogram'
 
 /** Sections tracked by the scroll spy. Order matters. */
 const SECTION_LINKS = [
@@ -65,7 +66,8 @@ function SiteHeader() {
   return (
     <header className="site-header">
       <Link className="brand" to="/" aria-label="Mr Ugo — home">
-        Mr Ugo
+        <Monogram variant="gold" size={32} idSuffix="header" />
+        <span>Mr Ugo</span>
       </Link>
 
       <nav aria-label="Main navigation">

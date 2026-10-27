@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Monogram from './Monogram'
 
 // Computed once at module load instead of during render (keeps the render pure).
 const CURRENT_YEAR = new Date().getFullYear()
@@ -19,7 +20,8 @@ function SiteFooter() {
     <footer className="site-footer">
       <div className="footer-inner" data-reveal>
         <Link className="footer-brand" to="/" aria-label="Mr Ugo — home">
-          Mr Ugo
+          <Monogram variant="light" size={38} idSuffix="footer" />
+          <span>Mr Ugo</span>
         </Link>
 
         <nav className="footer-nav" aria-label="Footer">
@@ -34,7 +36,9 @@ function SiteFooter() {
         </button>
       </div>
 
-      <p className="footer-note">© {CURRENT_YEAR} Ugochukwu</p>
+      <p className="footer-note">
+        © {CURRENT_YEAR} Ugochukwu. All rights reserved.
+      </p>
     </footer>
   )
 }

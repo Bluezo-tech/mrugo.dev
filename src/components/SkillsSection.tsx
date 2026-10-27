@@ -2,13 +2,17 @@ import { SKILL_GROUPS } from '../data/skills'
 
 function SkillsSection() {
   return (
-    <section className="skills-section" id="skills">
-      <p className="section-label">WHAT I WORK WITH</p>
-      <h2>Skills and tools I build with.</h2>
-      <p className="skills-intro">
-        The technologies I use and keep working with, grouped by where they sit in a
-        project.
-      </p>
+    <section className="skills-section" id="skills" data-reveal>
+      <div className="section-head">
+        <p className="section-label">WHAT I WORK WITH</p>
+        <h2>
+          Skills and tools I <span className="gold-text">build with.</span>
+        </h2>
+        <p className="section-intro">
+          The technologies I use and keep working with, grouped by where they sit
+          in a project.
+        </p>
+      </div>
 
       <div className="skills-grid">
         {SKILL_GROUPS.map((group) => (
