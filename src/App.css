@@ -60,14 +60,14 @@ main {
   display: block;
 }
 
-.site-header nav {
+.main-nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 28px;
 }
 
-.site-header nav a {
+.main-nav a {
   color: var(--nav);
   font-size: 0.9rem;
   font-weight: 500;
@@ -76,11 +76,11 @@ main {
 }
 
 
-.site-header nav a:hover {
+.main-nav a:hover {
   color: var(--accent);
 }
 
-.site-header nav a.is-active {
+.main-nav a.is-active {
   color: var(--accent);
   font-weight: 700;
 }
@@ -788,11 +788,11 @@ footer {
     padding: 16px 20px;
   }
 
-  .site-header nav {
+  .main-nav {
     gap: 14px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     font-size: 0.8rem;
   }
 
@@ -827,12 +827,12 @@ footer {
     font-size: 1.02rem;
   }
 
-  .site-header nav {
+  .main-nav {
     justify-content: flex-end;
     gap: 12px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     font-size: 0.74rem;
   }
 
@@ -884,11 +884,11 @@ footer {
     font-size: 0.95rem;
   }
 
-  .site-header nav {
+  .main-nav {
     gap: 9px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     font-size: 0.69rem;
   }
 }
@@ -1814,7 +1814,7 @@ a.social-card:hover {
 
 /* ---- Header: icon + text nav items ---- */
 
-.site-header nav a {
+.main-nav a {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -1830,11 +1830,11 @@ a.social-card:hover {
 /* On narrow phones the labels would push the pill past the viewport, so the
    icons stand alone; every link keeps its aria-label for screen readers. */
 @media (max-width: 560px) {
-  .site-header nav {
+  .main-nav {
     gap: 16px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     gap: 0;
   }
 
@@ -2090,11 +2090,11 @@ a.contact-line-item:hover {
 /* ---- Nav: ten items, shrinking in tiers, never dropped ---- */
 
 @media (min-width: 1101px) {
-  .site-header nav {
+  .main-nav {
     gap: 16px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     gap: 6px;
     font-size: 0.86rem;
   }
@@ -2106,11 +2106,11 @@ a.contact-line-item:hover {
 }
 
 @media (min-width: 1001px) and (max-width: 1100px) {
-  .site-header nav {
+  .main-nav {
     gap: 10px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     gap: 5px;
     font-size: 0.8rem;
   }
@@ -2124,11 +2124,11 @@ a.contact-line-item:hover {
 /* Icon-only from here down — labels are kept in the DOM for screen readers
    via each link's aria-label, never removed from the nav itself. */
 @media (max-width: 1000px) {
-  .site-header nav {
+  .main-nav {
     gap: 12px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     gap: 0;
   }
 
@@ -2143,7 +2143,7 @@ a.contact-line-item:hover {
 }
 
 @media (max-width: 560px) {
-  .site-header nav {
+  .main-nav {
     gap: 5px;
   }
 
@@ -2154,7 +2154,7 @@ a.contact-line-item:hover {
 }
 
 @media (max-width: 340px) {
-  .site-header nav {
+  .main-nav {
     gap: 4px;
   }
 
@@ -2375,11 +2375,11 @@ a.contact-line-item:hover {
 /* ---- Header nav tiers (11 items; labels until 1000px, icons below) ---- */
 
 @media (min-width: 1200px) {
-  .site-header nav {
+  .main-nav {
     gap: 14px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     gap: 6px;
     font-size: 0.84rem;
   }
@@ -2391,11 +2391,11 @@ a.contact-line-item:hover {
 }
 
 @media (min-width: 1101px) and (max-width: 1199px) {
-  .site-header nav {
+  .main-nav {
     gap: 10px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     gap: 5px;
     font-size: 0.78rem;
   }
@@ -2407,11 +2407,11 @@ a.contact-line-item:hover {
 }
 
 @media (min-width: 1001px) and (max-width: 1100px) {
-  .site-header nav {
+  .main-nav {
     gap: 6px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     gap: 4px;
     font-size: 0.74rem;
   }
@@ -2423,11 +2423,11 @@ a.contact-line-item:hover {
 }
 
 @media (max-width: 1000px) {
-  .site-header nav {
+  .main-nav {
     gap: 11px;
   }
 
-  .site-header nav a {
+  .main-nav a {
     gap: 0;
   }
 
@@ -2442,7 +2442,7 @@ a.contact-line-item:hover {
 }
 
 @media (max-width: 560px) {
-  .site-header nav {
+  .main-nav {
     gap: 4px;
   }
 
@@ -2453,7 +2453,7 @@ a.contact-line-item:hover {
 }
 
 @media (max-width: 340px) {
-  .site-header nav {
+  .main-nav {
     gap: 3px;
   }
 
@@ -2521,5 +2521,283 @@ a.contact-line-item:hover {
   .preview-grid,
   .socials-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   ROUND: phone layout — hamburger menu, hero order, readable type
+======================================== */
+
+/* ---- Menu button (hidden until phone widths) ---- */
+
+.menu-toggle {
+  display: none;
+}
+
+.phone-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+
+  display: grid;
+  gap: 2px;
+
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+
+  padding: 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 22px;
+
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(35, 29, 19, 0.18);
+
+  text-align: left;
+}
+
+.phone-menu nav {
+  display: grid;
+  gap: 2px;
+}
+
+.phone-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 13px 14px;
+
+  border-radius: 14px;
+
+  color: var(--card-title);
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.phone-menu-link:hover,
+.phone-menu-link:focus-visible {
+  background: rgba(200, 139, 17, 0.1);
+  color: var(--gold-dark);
+}
+
+.phone-menu-icon {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+}
+
+.phone-menu-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 8px;
+  padding: 12px;
+
+  border: 1px dashed rgba(200, 139, 17, 0.4);
+  border-radius: 14px;
+
+  background: transparent;
+  color: var(--gold-dark);
+
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.phone-menu-close-icon {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 768px) {
+  /* Hide the desktop nav row only — the phone panel has its own <nav>. */
+  .main-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-h);
+
+    cursor: pointer;
+  }
+
+  .menu-toggle-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .menu-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .site-header {
+    gap: 12px;
+  }
+
+  /* ---- Hero: headline first, then subtext, portrait, bubble, buttons ---- */
+
+  .hero-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    text-align: center;
+  }
+
+  /* Lets the headline, intro and buttons sit directly in the column so they
+     can be ordered around the portrait without moving any markup. */
+  .hero-content {
+    display: contents;
+  }
+
+  .hero-section h1 {
+    order: 1;
+  }
+
+  .hero-description {
+    order: 2;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .hero-right {
+    order: 3;
+  }
+
+  .hero-actions {
+    order: 4;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* ---- Marquee: a still, wrapped list so nothing is sliced at the edges ---- */
+
+  .tech-stripe {
+    padding: 18px 0;
+  }
+
+  .tech-track {
+    display: block;
+    width: 100%;
+    animation: none;
+    transform: none;
+  }
+
+  .tech-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 14px;
+
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  /* The second copy only exists for the loop. */
+  .tech-group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .tech-item {
+    gap: 9px;
+    font-size: 0.86rem;
+  }
+
+  .tech-logo,
+  .tech-symbol {
+    width: 18px;
+    height: 18px;
+  }
+
+  .tech-symbol {
+    font-size: 18px;
+  }
+
+  /* ---- Projects: stop the TODO media eating the screen ---- */
+
+  .project-card:only-child .project-media {
+    aspect-ratio: 2.2 / 1;
+    min-height: 0;
+  }
+
+  /* ---- Readable type on phones ---- */
+
+  .section-label {
+    font-size: 0.8rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+  }
+
+  .skills-item {
+    font-size: 0.95rem;
+  }
+
+  .preview-chip {
+    font-size: 0.76rem;
+  }
+
+  .preview-note {
+    font-size: 0.87rem;
+  }
+
+  .social-detail {
+    font-size: 0.87rem;
+  }
+
+  .todo-note {
+    font-size: 0.85rem;
+  }
+
+  .empty-copy {
+    font-size: 0.92rem;
+  }
+
+  .support-placeholder {
+    font-size: 0.88rem;
+  }
+
+  .form-note,
+  .form-count {
+    font-size: 0.85rem;
+  }
+
+  .footer-copy {
+    font-size: 0.85rem;
+  }
+
+  /* ---- Footer links: comfortable tap targets ---- */
+
+  .footer-nav {
+    gap: 4px 16px;
+  }
+
+  .footer-nav a {
+    padding: 10px 4px;
+    font-size: 0.86rem;
   }
 }

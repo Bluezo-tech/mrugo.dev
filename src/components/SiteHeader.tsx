@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Monogram from './Monogram'
 import { NAV_ITEMS, SPY_IDS } from '../data/navigation'
+import { CloseIcon, MenuIcon } from './Icons'
 
 function SiteHeader() {
   const { pathname } = useLocation()
   const [activeSection, setActiveSection] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const onHome = pathname === '/'
   const onExperience = pathname === '/experience'
@@ -57,14 +59,32 @@ function SiteHeader() {
     }
   }, [onHome])
 
+  // Escape closes the phone menu.
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen])
+
   return (
-    <header className="site-header">
-      <Link className="brand" to="/" aria-label="Mr Ugo — home">
+    <header className={menuOpen ? 'site-header is-menu-open' : 'site-header'}>
+      <Link
+        className="brand"
+        to="/"
+        aria-label="Mr Ugo — home"
+        onClick={() => setMenuOpen(false)}
+      >
         <Monogram variant="gold" size={32} idSuffix="header" />
         <span className="brand-text">Mr Ugo</span>
       </Link>
 
-      <nav aria-label="Main navigation">
+      {/* Desktop / tablet nav — labels above 1000px, icons between 769 and 1000 */}
+      <nav className="main-nav" aria-label="Main navigation">
         {NAV_ITEMS.map(({ label, to, Icon, spyId }) => {
           const isExperience = label === 'Experience'
           const isActive = isExperience ? onExperience : active === spyId
@@ -86,6 +106,50 @@ function SiteHeader() {
           )
         })}
       </nav>
+
+      {/* Phone menu button */}
+      <button
+        type="button"
+        className="menu-toggle"
+        aria-expanded={menuOpen}
+        aria-controls="phone-menu"
+        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        {menuOpen ? (
+          <CloseIcon className="menu-toggle-icon" />
+        ) : (
+          <MenuIcon className="menu-toggle-icon" />
+        )}
+      </button>
+
+      {/* Phone menu panel */}
+      {menuOpen && (
+        <div className="phone-menu" id="phone-menu">
+          <nav aria-label="Phone menu">
+            {NAV_ITEMS.map(({ label, to, Icon }) => (
+              <Link
+                key={label}
+                to={to}
+                className="phone-menu-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                <Icon className="phone-menu-icon" />
+                <span>{label}</span>
+              </Link>
+            ))}
+          </nav>
+
+          <button
+            type="button"
+            className="phone-menu-close"
+            onClick={() => setMenuOpen(false)}
+          >
+            <CloseIcon className="phone-menu-close-icon" />
+            <span>Close menu</span>
+          </button>
+        </div>
+      )}
     </header>
   )
 }
