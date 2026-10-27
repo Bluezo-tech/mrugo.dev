@@ -55,3 +55,18 @@ export function PlusIcon({ className }: IconProps) {
     </svg>
   )
 }
+
+/**
+ * A simple "in" mark drawn for the LinkedIn card. Simple Icons no longer
+ * serves a LinkedIn glyph (the CDN returns 404), so this replaces it.
+ * Drawn as plain shapes — no font or image dependency.
+ */
+export function LinkedInIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+      <circle cx="6.1" cy="6.1" r="2" />
+      <rect x="4.2" y="9.4" width="3.8" height="10.3" rx="0.5" />
+      <path d="M10.5 19.7V9.4h3.6v1.4c.8-1 2-1.6 3.4-1.6 2.4 0 3.9 1.6 3.9 4.4v6.1h-3.7v-5.6c0-1.3-.6-2-1.6-2s-1.9.8-1.9 2.2v5.4z" />
+    </svg>
+  )
+}

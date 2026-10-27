@@ -7,6 +7,7 @@ import ProjectsSection from './components/ProjectsSection'
 import SocialsSection from './components/SocialsSection'
 import ContactSection from './components/ContactSection'
 import { SKILLS } from './data/skills'
+import { BriefcaseIcon, EnvelopeIcon } from './components/Icons'
 import './App.css'
 import profilePhoto from './assets/images/ugo-profile.jpeg'
 
@@ -29,10 +30,12 @@ function Home() {
 
           <div className="hero-actions">
             <Link className="contact-button" to="/experience">
-              View My Experience <span aria-hidden="true">→</span>
+              <BriefcaseIcon className="button-icon" />
+              <span>View My Experience</span>
             </Link>
             <Link className="hero-secondary-button" to="/#contact">
-              Get in touch <span aria-hidden="true">↗</span>
+              <EnvelopeIcon className="button-icon" />
+              <span>Get in touch</span>
             </Link>
           </div>
         </div>

@@ -1,12 +1,14 @@
 import type { CSSProperties } from 'react'
 import { SOCIALS } from '../data/content'
-import { PlusIcon } from './Icons'
+import { LinkedInIcon, PlusIcon } from './Icons'
 
 function SocialIconSquare({
+  id,
   slug,
   color,
   tint,
 }: {
+  id: string
   slug?: string
   color?: string
   tint?: string
@@ -17,7 +19,9 @@ function SocialIconSquare({
       style={{ background: tint } as CSSProperties}
       aria-hidden="true"
     >
-      {slug ? (
+      {id === 'linkedin' ? (
+        <LinkedInIcon className="social-brand-icon" />
+      ) : slug ? (
         <img
           src={`https://cdn.simpleicons.org/${slug}/${color ?? '9a9a9a'}`}
           alt=""
@@ -49,6 +53,7 @@ function SocialsSection() {
           social.todo || !social.href ? (
             <div className="social-card is-todo" key={social.id}>
               <SocialIconSquare
+                id={social.id}
                 slug={social.iconSlug}
                 color={social.iconColor}
                 tint={social.tint}
@@ -70,6 +75,7 @@ function SocialsSection() {
               rel="noopener noreferrer"
             >
               <SocialIconSquare
+                id={social.id}
                 slug={social.iconSlug}
                 color={social.iconColor}
                 tint={social.tint}

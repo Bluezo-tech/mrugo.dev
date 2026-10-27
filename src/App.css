@@ -2058,3 +2058,23 @@ a.contact-line-item:hover {
     justify-content: center;
   }
 }
+
+/* ========================================
+   ROUND: hero button icons + LinkedIn mark
+======================================== */
+
+/* Icons inside the two hero buttons — same 16px size as the header nav. */
+.button-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+}
+
+/* Hand-drawn "in" mark inside the LinkedIn card's icon square. */
+.social-brand-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  color: #9a9a9a;
+}
