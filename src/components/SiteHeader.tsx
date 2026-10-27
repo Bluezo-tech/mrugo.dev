@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-/** The only sections in the main nav. Order matters. */
+/** Sections tracked by the scroll spy. Order matters. */
 const SECTION_LINKS = [
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
+  { id: 'contact', label: 'Contact' },
 ] as const
 
 function SiteHeader() {

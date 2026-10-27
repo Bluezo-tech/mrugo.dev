@@ -1,7 +1,11 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Experience from './pages/Experience'
 import Layout from './components/Layout'
+import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
+import ProjectsSection from './components/ProjectsSection'
+import SocialsSection from './components/SocialsSection'
+import ContactSection from './components/ContactSection'
 import { SKILLS } from './data/skills'
 import './App.css'
 import profilePhoto from './assets/images/ugo-profile.jpeg'
@@ -78,19 +82,11 @@ function Home() {
         </div>
       </section>
 
-      <section className="about-section" id="about" data-reveal>
-        <p className="section-label">A LITTLE ABOUT ME</p>
-        <h2>Technology, creativity, and building things that matter.</h2>
-        <p>
-          I'm a software developer and technology enthusiast with
-          experience in web development, digital content creation,
-          technical support, and platform operations. I enjoy building
-          digital solutions, solving problems, and turning ideas into
-          practical experiences through technology and creativity.
-        </p>
-      </section>
-
+      <AboutSection />
       <SkillsSection />
+      <ProjectsSection />
+      <SocialsSection />
+      <ContactSection />
     </main>
   )
 }

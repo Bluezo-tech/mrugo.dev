@@ -16,27 +16,11 @@ function SiteFooter() {
   }
 
   return (
-    <footer id="contact">
-      <div data-reveal>
-        <p className="section-label">HAVE A PROJECT IN MIND?</p>
-        <h2>Let's connect.</h2>
-        <p className="footer-description">
-          Have an idea, a project, or an opportunity to discuss? I'd love to
-          hear from you.
-        </p>
-
-        <div className="footer-links">
-          <a href="mailto:bluezotech@gmail.com">
-            Get in touch via email <span aria-hidden="true">↗</span>
-          </a>
-          <a
-            href="https://wa.me/2349042715057"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Message Bluezo Tech on WhatsApp <span aria-hidden="true">↗</span>
-          </a>
-        </div>
+    <footer className="site-footer">
+      <div className="footer-inner" data-reveal>
+        <Link className="footer-brand" to="/" aria-label="Mr Ugo — home">
+          Mr Ugo
+        </Link>
 
         <nav className="footer-nav" aria-label="Footer">
           <Link to="/#about">About</Link>
@@ -44,13 +28,13 @@ function SiteFooter() {
           <Link to="/experience">Experience</Link>
           <Link to="/#contact">Contact</Link>
         </nav>
+
+        <button type="button" className="back-to-top" onClick={handleBackToTop}>
+          Back to top <span aria-hidden="true">↑</span>
+        </button>
       </div>
 
       <p className="footer-note">© {CURRENT_YEAR} Ugochukwu</p>
-
-      <button type="button" className="back-to-top" onClick={handleBackToTop}>
-        Back to top <span aria-hidden="true">↑</span>
-      </button>
     </footer>
   )
 }

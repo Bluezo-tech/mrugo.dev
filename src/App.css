@@ -406,6 +406,25 @@ footer a:focus-visible {
 ======================================== */
 
 .about-section,
+.skills-section,
+.projects-section,
+.socials-section,
+.contact-section {
+  width: min(1000px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.about-section {
+  padding: 80px 0 84px;
+}
+
+.skills-section,
+.projects-section,
+.socials-section,
+.contact-section {
+  padding: 0 0 84px;
+}
+
 .experience-section {
   width: min(900px, calc(100% - 48px));
   margin: 0 auto;
@@ -414,26 +433,27 @@ footer a:focus-visible {
 
 .about-section h2,
 .skills-section h2,
-.experience-section h2,
-footer h2 {
+.projects-section h2,
+.socials-section h2,
+.contact-section h2,
+.experience-section h2 {
   max-width: 760px;
   margin-top: 0;
 }
 
-.about-section > p:last-child {
+.about-copy {
   max-width: 760px;
   margin-top: 20px;
+}
+
+.section-intro {
+  max-width: 620px;
+  margin-top: 18px;
 }
 
 /* ========================================
    SKILLS SECTION
 ======================================== */
-
-.skills-section {
-  width: min(1000px, calc(100% - 48px));
-  margin: 0 auto;
-  padding: 0 0 84px;
-}
 
 .skills-intro {
   max-width: 620px;
@@ -946,6 +966,9 @@ body::before {
 
 #about,
 #skills,
+#projects,
+#socials,
+#contact,
 #home {
   scroll-margin-top: 24px;
 }
@@ -975,5 +998,550 @@ body::before {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ========================================
+   ABOUT: STATS ROW (reference layout, TODO values)
+======================================== */
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 760px;
+  margin-top: 36px;
+}
+
+.stat-card {
+  padding: 24px 18px 22px;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 10px 30px rgba(35, 29, 19, 0.06);
+
+  text-align: center;
+}
+
+.stat-value {
+  font-family: var(--heading);
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-h);
+}
+
+.stat-label {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.stat-card.is-todo {
+  border-style: dashed;
+  border-color: rgba(200, 139, 17, 0.45);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.stat-card.is-todo .stat-value {
+  color: var(--gold-dark);
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+}
+
+/* ========================================
+   FEATURED PROJECTS
+======================================== */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 12px 36px rgba(35, 29, 19, 0.07);
+}
+
+.project-media {
+  display: grid;
+  place-items: center;
+
+  aspect-ratio: 16 / 10;
+
+  background: linear-gradient(140deg, #f7f1e2, #ece0c6);
+}
+
+.project-media.is-todo {
+  border-bottom: 1px dashed rgba(200, 139, 17, 0.4);
+}
+
+.project-media span {
+  color: var(--gold-dark);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.project-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 20px 22px 22px;
+}
+
+.project-status {
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-body h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--card-title);
+}
+
+.project-copy {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-tags li {
+  padding: 4px 10px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--card-title);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.todo-note {
+  margin-top: auto;
+  padding-left: 10px;
+
+  border-left: 2px dashed rgba(200, 139, 17, 0.5);
+
+  color: var(--gold-dark);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+/* ========================================
+   SOCIAL LINKS
+======================================== */
+
+.socials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 16px 18px;
+
+  border: 1px solid var(--border);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 8px 22px rgba(35, 29, 19, 0.05);
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+a.social-card:hover {
+  border-color: rgba(200, 139, 17, 0.35);
+  box-shadow: 0 12px 28px rgba(35, 29, 19, 0.08);
+  transform: translateY(-2px);
+}
+
+.social-name {
+  color: var(--card-title);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.social-detail {
+  margin-top: 2px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.social-mark {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.social-card.is-todo {
+  border-style: dashed;
+  border-color: rgba(200, 139, 17, 0.4);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.social-card.is-todo .social-mark {
+  color: var(--gold-dark);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+}
+
+/* ========================================
+   CONTACT SECTION (separate from the footer)
+======================================== */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 20px;
+  align-items: start;
+
+  margin-top: 36px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 20px;
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 8px 24px rgba(35, 29, 19, 0.05);
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.contact-card:hover {
+  border-color: rgba(200, 139, 17, 0.35);
+  box-shadow: 0 12px 30px rgba(35, 29, 19, 0.08);
+  transform: translateY(-2px);
+}
+
+.contact-card-label {
+  color: var(--gold-dark);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-card-value {
+  color: var(--card-title);
+  font-size: 0.95rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.contact-card-mark {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* Form */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  padding: 24px;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 14px 40px rgba(35, 29, 19, 0.08);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--card-title);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.form-optional {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.form-input {
+  padding: 12px 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: #fff;
+  color: var(--text-h);
+
+  font: inherit;
+  font-size: 0.92rem;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-input::placeholder {
+  color: var(--muted);
+}
+
+.form-input:focus-visible {
+  border-color: rgba(200, 139, 17, 0.55);
+  outline: 2px solid rgba(200, 139, 17, 0.45);
+  outline-offset: 1px;
+}
+
+.form-textarea {
+  min-height: 132px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.form-count {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  min-height: 48px;
+  padding: 0 22px;
+
+  border: 1px solid transparent;
+  border-radius: 15px;
+
+  background: var(--accent);
+  color: #fff;
+
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-submit:hover {
+  box-shadow: 0 10px 26px rgba(200, 139, 17, 0.35);
+  transform: translateY(-1px);
+}
+
+.form-submit:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.form-note {
+  color: var(--text);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* ========================================
+   FOOTER (separate from the contact section)
+======================================== */
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-brand {
+  color: #fff;
+  font-family: var(--heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.footer-inner .footer-nav {
+  margin-top: 0;
+}
+
+.footer-inner .back-to-top {
+  margin-top: 0;
+}
+
+/* ========================================
+   LANDING PAGE RESPONSIVE
+======================================== */
+
+@media (max-width: 1000px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .about-section,
+  .skills-section,
+  .projects-section,
+  .socials-section,
+  .contact-section {
+    width: calc(100% - 40px);
+  }
+
+  .about-section {
+    padding: 58px 0 62px;
+  }
+
+  .skills-section,
+  .projects-section,
+  .socials-section,
+  .contact-section {
+    padding: 0 0 62px;
+  }
+
+  .stats-row,
+  .projects-grid,
+  .socials-grid,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+}
+
+/* Single-card state: one honest "currently building" card should look
+   deliberate, not like a broken 3-column grid. When Ugo adds a second
+   project, :only-child stops matching and the normal grid returns. */
+.projects-grid:has(> .project-card:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.project-card:only-child {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.project-card:only-child .project-media {
+  flex: 0 0 38%;
+  aspect-ratio: auto;
+  min-height: 100%;
+
+  border-bottom: 0;
+  border-right: 1px dashed rgba(200, 139, 17, 0.4);
+}
+
+.project-card:only-child .project-body {
+  flex: 1;
+  padding: 26px 28px;
+}
+
+@media (max-width: 760px) {
+  .project-card:only-child {
+    flex-direction: column;
+  }
+
+  .project-card:only-child .project-media {
+    flex: none;
+    aspect-ratio: 16 / 10;
+    border-right: 0;
+    border-bottom: 1px dashed rgba(200, 139, 17, 0.4);
+  }
+
+  .project-card:only-child .project-body {
+    padding: 20px 20px 22px;
   }
 }
