@@ -1,0 +1,145 @@
+/* ========================================
+   FONTS (self-hosted, latin subset, variable weights)
+   Loaded from src/assets/fonts so the browser really
+   uses them instead of silently falling back.
+======================================== */
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("./assets/fonts/plus-jakarta-sans-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./assets/fonts/inter-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ========================================
+   DESIGN TOKENS
+   Values verified from the reference site (README section 8).
+======================================== */
+
+:root {
+  /* Surfaces */
+  --bg: #f3eee3;
+  --surface: rgba(255, 255, 255, 0.72);
+  --border: rgba(0, 0, 0, 0.08);
+
+  /* Text */
+  --text: #666666;
+  --text-h: #111827;
+  --nav: #3d3d3d;
+  --muted: #9a9a9a;
+
+  /* Gold accent and its headline gradient */
+  --accent: #c88b11;
+  --accent-from: #c99022;
+  --accent-mid: #e4b248;
+  --accent-to: #c98917;
+
+  /* Buttons */
+  --button: #111111;
+  --button-hover: #000000;
+
+  /* Dark surfaces */
+  --dark: #141414;
+
+  /* Type */
+  --sans: "Plus Jakarta Sans", Inter, sans-serif;
+  --heading: "Plus Jakarta Sans", Inter, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  --code-bg: #f4f3ec;
+
+  font: 16px/1.6 var(--sans);
+  letter-spacing: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   BASE
+======================================== */
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   HEADINGS
+   50px desktop / 36px phone, 36px desktop / 30px phone.
+======================================== */
+
+h1,
+h2,
+h3 {
+  font-family: var(--heading);
+  font-weight: 800;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4.6vw, 3.125rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+h2 {
+  font-size: clamp(1.875rem, 3.2vw, 2.25rem);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin: 0 0 1rem;
+}
+
+p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+code,
+.counter {
+  display: inline-flex;
+  font-family: var(--mono);
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  padding: 4px 8px;
+  background: var(--code-bg);
+  font-size: 15px;
+  line-height: 135%;
+}
