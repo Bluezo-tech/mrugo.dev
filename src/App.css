@@ -2838,3 +2838,13 @@ a.project-card {
 #root > .site-footer {
   flex: 0 0 auto;
 }
+
+/* 404 page action row */
+.notfound-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 30px;
+}

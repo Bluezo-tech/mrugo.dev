@@ -3,6 +3,7 @@ import Experience from './pages/Experience'
 import Projects from './pages/Projects'
 import SourceCode from './pages/SourceCode'
 import Ebooks from './pages/Ebooks'
+import NotFound from './pages/NotFound'
 import Layout from './components/Layout'
 import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
@@ -152,12 +153,23 @@ function App() {
           <Route
             path="/hire"
             element={
-              <section className="experience-section">
-                <h2>Hire Me</h2>
-                <p>Full hire form coming soon — for now, reach me through the Contact page.</p>
-              </section>
+              <main>
+                <section className="page-section">
+                  <div className="section-head">
+                    <p className="section-label">HIRE ME</p>
+                    <h2>
+                      Hire <span className="gold-text">Me</span>
+                    </h2>
+                    <p className="section-intro">
+                      Full hire form coming soon — for now, reach me through the{' '}
+                      <Link to="/contact">Contact page</Link>.
+                    </p>
+                  </div>
+                </section>
+              </main>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
