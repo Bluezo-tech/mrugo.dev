@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Experience from './pages/Experience'
 import Projects from './pages/Projects'
+import SourceCode from './pages/SourceCode'
 import Layout from './components/Layout'
 import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
@@ -141,20 +142,7 @@ function App() {
           <Route path="/skills" element={<SkillsSection />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
-          <Route
-            path="/source-code"
-            element={
-              <PreviewSection
-                id="source-code"
-                eyebrow="SOURCE CODE"
-                headingBefore="Code drops,"
-                headingGold="coming soon"
-                subline="Once a project is finished and documented, the full code will be shared here. Nothing is available to download yet."
-                cards={SOURCE_CODE_CARDS}
-                Icon={TerminalIcon}
-              />
-            }
-          />
+          <Route path="/source-code" element={<SourceCode />} />
           <Route
             path="/ebooks"
             element={
