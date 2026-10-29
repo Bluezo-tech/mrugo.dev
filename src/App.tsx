@@ -140,16 +140,16 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutSection />} />
-          <Route path="/skills" element={<SkillsSection />} />
+          <Route path="/about" element={<main><AboutSection /></main>} />
+          <Route path="/skills" element={<main><SkillsSection /></main>} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/source-code" element={<SourceCode />} />
           <Route path="/ebooks" element={<Ebooks />} />
-          <Route path="/classes" element={<ClassesSection />} />
-          <Route path="/socials" element={<SocialsSection />} />
-          <Route path="/contact" element={<ContactSection />} />
-          <Route path="/support" element={<SupportSection />} />
+          <Route path="/classes" element={<main><ClassesSection /></main>} />
+          <Route path="/socials" element={<main><SocialsSection /></main>} />
+          <Route path="/contact" element={<main><ContactSection /></main>} />
+          <Route path="/support" element={<main><SupportSection /></main>} />
           <Route
             path="/hire"
             element={
