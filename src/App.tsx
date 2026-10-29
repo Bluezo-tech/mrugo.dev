@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Experience from './pages/Experience'
 import Projects from './pages/Projects'
 import SourceCode from './pages/SourceCode'
+import Ebooks from './pages/Ebooks'
 import Layout from './components/Layout'
 import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
@@ -143,20 +144,7 @@ function App() {
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/source-code" element={<SourceCode />} />
-          <Route
-            path="/ebooks"
-            element={
-              <PreviewSection
-                id="ebooks"
-                eyebrow="E-BOOKS"
-                headingBefore="Guides,"
-                headingGold="coming soon"
-                subline="Practical write-ups from the things I build. No books are published yet."
-                cards={EBOOK_CARDS}
-                Icon={BookIcon}
-              />
-            }
-          />
+          <Route path="/ebooks" element={<Ebooks />} />
           <Route path="/classes" element={<ClassesSection />} />
           <Route path="/socials" element={<SocialsSection />} />
           <Route path="/contact" element={<ContactSection />} />
