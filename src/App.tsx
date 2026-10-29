@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Experience from './pages/Experience'
+import Projects from './pages/Projects'
 import Layout from './components/Layout'
 import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
@@ -139,7 +140,7 @@ function App() {
           <Route path="/about" element={<AboutSection />} />
           <Route path="/skills" element={<SkillsSection />} />
           <Route path="/experience" element={<Experience />} />
-          <Route path="/projects" element={<ProjectsSection />} />
+          <Route path="/projects" element={<Projects />} />
           <Route
             path="/source-code"
             element={

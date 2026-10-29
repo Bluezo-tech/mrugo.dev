@@ -2767,3 +2767,74 @@ body::before {
   color: #cfcfcf;
   text-decoration: none;
 }
+
+/* ========================================
+   STANDALONE PAGE SHELL + ProjectCard internals
+   Appended only: no existing rule is redefined, and nothing above is edited.
+======================================== */
+
+.page-section {
+  width: min(1000px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 72px 0 84px;
+}
+
+@media (max-width: 760px) {
+  .page-section {
+    width: calc(100% - 40px);
+    padding: 52px 0 62px;
+  }
+}
+
+/* ProductCards' ProjectCard markup uses these; the tuned CSS does not define
+   them, so the placeholder chip and the link would render unstyled. */
+.project-card.is-static {
+  cursor: default;
+}
+
+a.project-card {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-chip {
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+}
+
+.project-chip-icon {
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
+.project-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-link {
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* Short pages (e.g. /projects while empty) were leaving the dark footer
+   floating mid-viewport with cream space underneath. This keeps it at the
+   bottom of the screen without changing any page content. */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root > main {
+  flex: 1 0 auto;
+}
+
+#root > .site-footer {
+  flex: 0 0 auto;
+}
