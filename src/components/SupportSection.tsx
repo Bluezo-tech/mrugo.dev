@@ -1,4 +1,9 @@
+import { useState } from 'react'
+import SupportModal from './SupportModal'
+
 function SupportSection() {
+  const [open, setOpen] = useState(false)
+
   return (
     <section className="support" id="support" data-reveal>
       <div className="support-row">
@@ -25,13 +30,29 @@ function SupportSection() {
         </div>
 
         <div className="support-actions" aria-label="Support with">
-          <button type="button" className="support-chip">₦2,000</button>
-          <button type="button" className="support-chip">₦5,000</button>
-          <button type="button" className="support-chip">₦10,000</button>
-          <button type="button" className="support-chip">₦20,000</button>
-          <button type="button" className="support-chip is-other">Other</button>
+          <button type="button" className="support-chip" onClick={() => setOpen(true)}>
+            ₦2,000
+          </button>
+          <button type="button" className="support-chip" onClick={() => setOpen(true)}>
+            ₦5,000
+          </button>
+          <button type="button" className="support-chip" onClick={() => setOpen(true)}>
+            ₦10,000
+          </button>
+          <button type="button" className="support-chip" onClick={() => setOpen(true)}>
+            ₦20,000
+          </button>
+          <button
+            type="button"
+            className="support-chip is-other"
+            onClick={() => setOpen(true)}
+          >
+            Other
+          </button>
         </div>
       </div>
+
+      {open && <SupportModal onClose={() => setOpen(false)} />}
     </section>
   )
 }
