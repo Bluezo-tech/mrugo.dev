@@ -83,11 +83,14 @@ function SiteHeader() {
         <span className="brand-text">Mr Ugo</span>
       </Link>
 
-      {/* Desktop / tablet nav — labels above 1000px, icons between 769 and 1000 */}
-      <nav className="main-nav" aria-label="Main navigation">
+      {/* Bayo-style nav: one nav element, inline on desktop,
+          dropdown panel below 1000px when the header is open */}
+      <nav className="nav-links" id="site-menu" aria-label="Main navigation">
         {NAV_ITEMS.map(({ label, to, Icon, spyId }) => {
           const isExperience = label === 'Experience'
-          const isActive = isExperience ? onExperience : active === spyId
+          const isActive =
+            pathname === to ||
+            (isExperience ? onExperience : active === spyId)
 
           return (
             <Link
@@ -99,6 +102,7 @@ function SiteHeader() {
               }
               aria-label={label}
               title={label}
+              onClick={() => setMenuOpen(false)}
             >
               <Icon className="nav-icon" />
               <span className="nav-label">{label}</span>
@@ -107,12 +111,12 @@ function SiteHeader() {
         })}
       </nav>
 
-      {/* Phone menu button */}
+      {/* Menu button — visible below 1000px only, via CSS */}
       <button
         type="button"
         className="menu-toggle"
         aria-expanded={menuOpen}
-        aria-controls="phone-menu"
+        aria-controls="site-menu"
         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
         onClick={() => setMenuOpen((open) => !open)}
       >
@@ -122,34 +126,6 @@ function SiteHeader() {
           <MenuIcon className="menu-toggle-icon" />
         )}
       </button>
-
-      {/* Phone menu panel */}
-      {menuOpen && (
-        <div className="phone-menu" id="phone-menu">
-          <nav aria-label="Phone menu">
-            {NAV_ITEMS.map(({ label, to, Icon }) => (
-              <Link
-                key={label}
-                to={to}
-                className="phone-menu-link"
-                onClick={() => setMenuOpen(false)}
-              >
-                <Icon className="phone-menu-icon" />
-                <span>{label}</span>
-              </Link>
-            ))}
-          </nav>
-
-          <button
-            type="button"
-            className="phone-menu-close"
-            onClick={() => setMenuOpen(false)}
-          >
-            <CloseIcon className="phone-menu-close-icon" />
-            <span>Close menu</span>
-          </button>
-        </div>
-      )}
     </header>
   )
 }

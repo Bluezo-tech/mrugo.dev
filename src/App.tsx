@@ -30,30 +30,9 @@ function Home() {
   return (
     <main>
       <section className="hero-section" id="home">
-        <div className="hero-content">
-          <h1>
-            I build practical <span>digital experiences.</span>
-          </h1>
-
-          <p className="hero-description">
-            I'm a software developer passionate about web development,
-            programming, and building digital projects that solve
-            real-world problems. I combine technical skills, creative
-            thinking, and continuous learning to create practical,
-            user-focused digital experiences.
-          </p>
-
-          <div className="hero-actions">
-            <Link className="contact-button" to="/experience">
-              <BriefcaseIcon className="button-icon" />
-              <span>View My Experience</span>
-            </Link>
-            <Link className="hero-secondary-button" to="/#contact">
-              <EnvelopeIcon className="button-icon" />
-              <span>Get in touch</span>
-            </Link>
-          </div>
-        </div>
+        <h1>
+          I build practical <span>digital experiences.</span>
+        </h1>
 
         <div className="hero-right">
           <div className="avatar">
@@ -67,6 +46,25 @@ function Home() {
           </div>
 
           <p className="hero-bubble">Hello, I'm Ugo.</p>
+        </div>
+
+        <p className="hero-description">
+          I'm a software developer passionate about web development,
+          programming, and building digital projects that solve
+          real-world problems. I combine technical skills, creative
+          thinking, and continuous learning to create practical,
+          user-focused digital experiences.
+        </p>
+
+        <div className="hero-actions">
+          <Link className="contact-button" to="/experience">
+            <BriefcaseIcon className="button-icon" />
+            <span>View My Experience</span>
+          </Link>
+          <Link className="hero-secondary-button" to="/contact">
+            <EnvelopeIcon className="button-icon" />
+            <span>Get in touch</span>
+          </Link>
         </div>
       </section>
 
@@ -138,7 +136,51 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutSection />} />
+          <Route path="/skills" element={<SkillsSection />} />
           <Route path="/experience" element={<Experience />} />
+          <Route path="/projects" element={<ProjectsSection />} />
+          <Route
+            path="/source-code"
+            element={
+              <PreviewSection
+                id="source-code"
+                eyebrow="SOURCE CODE"
+                headingBefore="Code drops,"
+                headingGold="coming soon"
+                subline="Once a project is finished and documented, the full code will be shared here. Nothing is available to download yet."
+                cards={SOURCE_CODE_CARDS}
+                Icon={TerminalIcon}
+              />
+            }
+          />
+          <Route
+            path="/ebooks"
+            element={
+              <PreviewSection
+                id="ebooks"
+                eyebrow="E-BOOKS"
+                headingBefore="Guides,"
+                headingGold="coming soon"
+                subline="Practical write-ups from the things I build. No books are published yet."
+                cards={EBOOK_CARDS}
+                Icon={BookIcon}
+              />
+            }
+          />
+          <Route path="/classes" element={<ClassesSection />} />
+          <Route path="/socials" element={<SocialsSection />} />
+          <Route path="/contact" element={<ContactSection />} />
+          <Route path="/support" element={<SupportSection />} />
+          <Route
+            path="/hire"
+            element={
+              <section className="experience-section">
+                <h2>Hire Me</h2>
+                <p>Full hire form coming soon — for now, reach me through the Contact page.</p>
+              </section>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,8 +1,5 @@
-import { Link } from 'react-router-dom'
-
 function SupportSection() {
   return (
-    // TODO: Ugo's payment link and amounts go here — do not reuse Bayo's tiers
     <section className="support" id="support" data-reveal>
       <div className="support-row">
         <div className="support-text">
@@ -25,13 +22,14 @@ function SupportSection() {
             Support the work
           </h2>
           <p>If a class, a file or a guide here helped you, chip in whatever you like.</p>
-          <p>Support options coming soon.</p>
         </div>
 
         <div className="support-actions" aria-label="Support with">
-          <Link to="/support" className="support-chip">
-            See support options
-          </Link>
+          <button type="button" className="support-chip">₦2,000</button>
+          <button type="button" className="support-chip">₦5,000</button>
+          <button type="button" className="support-chip">₦10,000</button>
+          <button type="button" className="support-chip">₦20,000</button>
+          <button type="button" className="support-chip is-other">Other</button>
         </div>
       </div>
     </section>
