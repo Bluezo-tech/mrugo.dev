@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import './SocialsSection.css'
 import { SOCIALS } from '../data/content'
 import { LinkedInIcon, PlusIcon } from './Icons'
 
@@ -43,8 +44,7 @@ function SocialsSection() {
           Find me on <span className="gold-text">social media</span>
         </h2>
         <p className="section-intro">
-          Follow along for the projects I'm building, what I'm learning, and the
-          work behind them.
+          Reach me on WhatsApp. More ways to follow my work are coming soon.
         </p>
       </div>
 
@@ -63,7 +63,7 @@ function SocialsSection() {
                 <span className="social-detail">{social.detail}</span>
               </span>
               <span className="social-mark is-todo-mark" aria-hidden="true">
-                TODO
+                Soon
               </span>
             </div>
           ) : (

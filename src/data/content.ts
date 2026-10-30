@@ -14,9 +14,7 @@ export type Social = {
 
 /**
  * Only WhatsApp is a confirmed account (the link already existed in this
- * project). GitHub / X / LinkedIn are unconfirmed placeholders, and the last
- * two slots are unnamed on purpose — no account is claimed that Ugo hasn't
- * given.
+ * project). GitHub / X / LinkedIn remain unconfirmed placeholders.
  */
 export const SOCIALS: Social[] = [
   {
@@ -32,7 +30,7 @@ export const SOCIALS: Social[] = [
   {
     id: 'github',
     label: 'GitHub',
-    detail: 'TODO: add your profile URL',
+    detail: 'Profile link coming soon',
     iconSlug: 'github',
     iconColor: '9a9a9a',
     tint: 'rgba(31, 31, 31, 0.06)',
@@ -41,7 +39,7 @@ export const SOCIALS: Social[] = [
   {
     id: 'x',
     label: 'X',
-    detail: 'TODO: add your profile URL',
+    detail: 'Profile link coming soon',
     iconSlug: 'x',
     iconColor: '9a9a9a',
     tint: 'rgba(31, 31, 31, 0.06)',
@@ -50,24 +48,11 @@ export const SOCIALS: Social[] = [
   {
     id: 'linkedin',
     label: 'LinkedIn',
-    detail: 'TODO: add your profile URL',
+    detail: 'Profile link coming soon',
     tint: 'rgba(31, 31, 31, 0.06)',
     todo: true,
   },
-  {
-    id: 'slot-1',
-    label: 'Add a social',
-    detail: 'TODO: name this account and add its URL',
-    tint: 'rgba(154, 154, 154, 0.10)',
-    todo: true,
-  },
-  {
-    id: 'slot-2',
-    label: 'Add a social',
-    detail: 'TODO: name this account and add its URL',
-    tint: 'rgba(154, 154, 154, 0.10)',
-    todo: true,
-  },
+
 ]
 
 /** Contact details that already existed in this project. */

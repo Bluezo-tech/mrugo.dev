@@ -1,0 +1,35 @@
+/* Four named accounts, with a clear distinction between live and upcoming. */
+.socials-section .socials-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.socials-section .social-card {
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px;
+  min-width: 0;
+}
+.socials-section .social-icon-square { width: 48px; height: 48px; }
+.socials-section .social-card-text { gap: 8px; }
+.socials-section .social-name { font-size: 1rem; }
+.socials-section .social-detail { line-height: 1.5; }
+.socials-section .social-mark { position: absolute; top: 24px; right: 24px; }
+.socials-section .social-card.is-todo { border-style: solid; border-color: var(--border); }
+.socials-section .social-card.is-todo .social-mark { font-size: 0.75rem; letter-spacing: 0; }
+.socials-section a.social-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (max-width: 1000px) {
+  .socials-section .socials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .socials-section .social-card { padding: 18px; gap: 16px; }
+  .socials-section .social-mark { top: 18px; right: 18px; }
+}
+@media (max-width: 359px) {
+  .socials-section .socials-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .socials-section .social-card { transition: none; }
+  .socials-section a.social-card:hover { transform: none; }
+}
