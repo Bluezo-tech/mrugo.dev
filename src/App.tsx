@@ -19,6 +19,7 @@ import './components/SourcePreview.css'
 import './components/EbookPreview.css'
 import { BriefcaseIcon, HireBriefcaseIcon } from './components/Icons'
 import './App.css'
+import './components/HeroPhone.css'
 import profilePhoto from './assets/images/ugo-profile.jpeg'
 
 function Home() {
@@ -44,11 +45,8 @@ function Home() {
         </div>
 
         <p className="hero-description">
-          I'm a software developer passionate about web development,
-          programming, and building digital projects that solve
-          real-world problems. I combine technical skills, creative
-          thinking, and continuous learning to create practical,
-          user-focused digital experiences.
+          I'm a software developer building practical web apps and digital
+          tools that solve real problems.
         </p>
 
         <div className="hero-actions">

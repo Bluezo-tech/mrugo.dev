@@ -1,0 +1,10 @@
+@media (max-width: 480px) {
+  .hero-section { gap: 24px; padding-top: 40px; }
+  .hero-right { --disc-size: 210px; --ring-size: 226px; gap: 20px; margin-bottom: 18px; }
+  .hero-section h1 { max-width: 330px; font-size: clamp(2rem, 9vw, 2.3rem); }
+  .hero-description { max-width: 320px; font-size: 1rem; line-height: 1.6; }
+}
+@media (max-width: 360px) {
+  .site-header .brand { gap: 9px; }
+  .site-header .brand-text { display: inline; }
+}
