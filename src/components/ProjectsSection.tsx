@@ -1,4 +1,6 @@
 import { CURRENT_PROJECT_TODO } from '../data/content'
+import { FolderKanbanIcon } from './Icons'
+import './ProjectsSection.css'
 
 function ProjectsSection() {
   return (
@@ -9,28 +11,23 @@ function ProjectsSection() {
           Featured <span className="gold-text">projects</span>
         </h2>
         <p className="section-intro">
-          A place for the things I build. Nothing is listed here yet — the first
-          project goes in as soon as it is ready to show.
+          My first featured project will appear here when it's ready to share.
         </p>
       </div>
 
       <div className="projects-grid">
-        <article className="project-card">
-          <div className="project-media is-todo" aria-hidden="true">
-            <span>TODO</span>
+        <article className="project-card project-preview-card">
+          <div className="project-media" aria-hidden="true">
+            <div className="project-preview-art">
+              <FolderKanbanIcon className="project-preview-icon" />
+              <span>PROJECT PREVIEW</span>
+            </div>
           </div>
-
           <div className="project-body">
             <p className="project-status">In progress</p>
             <h3>{CURRENT_PROJECT_TODO.title}</h3>
             <p className="project-copy">{CURRENT_PROJECT_TODO.body}</p>
-
-            <ul className="project-tags" aria-label="Technologies">
-              <li>TODO</li>
-              <li>TODO</li>
-            </ul>
-
-            <p className="todo-note">{CURRENT_PROJECT_TODO.todo}</p>
+            <p className="project-preview-note">Name, stack and link coming soon.</p>
           </div>
         </article>
       </div>

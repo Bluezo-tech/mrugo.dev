@@ -67,7 +67,7 @@ export const CONTACT = {
 export const CURRENT_PROJECT_TODO = {
   title: 'Currently building',
   body:
-    'A project is in progress right now. The details, stack and link will appear here once it is ready to show.',
+    "I’m working on my first featured project. I’ll share it here when it’s ready.",
   todo: 'TODO: project name, one-line description, tech stack, live link',
 }
 

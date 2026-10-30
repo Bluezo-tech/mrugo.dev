@@ -1,0 +1,30 @@
+.projects-grid:has(> .project-preview-card:only-child) { grid-template-columns: 1fr; }
+.project-preview-card { max-width: 920px; width: 100%; margin: 0 auto; }
+.project-preview-card .project-media {
+  background: linear-gradient(145deg, #e8dcc4, #f6eedc 58%, #dfcda8);
+  border-right: 1px solid rgba(200,139,17,.25);
+}
+.project-preview-art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: min(78%, 260px);
+  aspect-ratio: 4 / 3;
+  border: 1px solid rgba(138,106,30,.24);
+  border-radius: 18px;
+  background: rgba(255,255,255,.55);
+  box-shadow: 0 16px 36px rgba(80,55,20,.1);
+}
+.project-preview-card .project-preview-icon { width: 52px; height: 52px; color: var(--accent); }
+.project-preview-art span { color: var(--gold-dark); font-size: .68rem; font-weight: 800; letter-spacing: .13em; }
+.project-preview-card .project-status { font-size: .75rem; }
+.project-preview-card .project-body h3 { font-size: clamp(1.3rem, 2.2vw, 1.75rem); }
+.project-preview-card .project-copy { max-width: 44ch; }
+.project-preview-note { margin-top: auto; color: var(--gold-dark); font-size: .82rem; font-weight: 600; }
+@media (max-width: 760px) {
+  .project-preview-card .project-media { min-height: 210px; border-right: 0; border-bottom: 1px solid rgba(200,139,17,.25); }
+  .project-preview-art { width: 54%; min-width: 170px; aspect-ratio: 4 / 3; }
+  .project-preview-card .project-body { padding: 22px; }
+}
