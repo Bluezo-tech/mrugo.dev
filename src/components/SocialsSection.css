@@ -40,29 +40,24 @@
   .socials-section a.social-card:hover { transform: none; }
 }
 
-.socials-section .social-message-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex: 0 0 auto;
-  min-height: 38px;
+.socials-section .social-message-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
   margin-left: auto;
-  padding: 0 13px;
   border-radius: 10px;
-  background: var(--button);
-  color: white;
-  font-size: 0.8rem;
-  font-weight: 700;
+  background: rgba(200,139,17,.12);
+  color: var(--gold-dark);
 }
-.socials-section .social-message-action svg { width: 17px; height: 17px; }
+.socials-section .social-message-icon svg { width: 19px; height: 19px; }
 @media (max-width: 700px) {
-  .socials-section .social-message-action { min-height: 34px; padding: 0 10px; }
-}
-
-@media (max-width: 700px) {
-  .socials-section .social-card { flex-wrap: wrap; min-width: 0; padding: 12px; }
-  .socials-section .social-card-text { flex-basis: calc(100% - 48px); }
-  .socials-section .social-message-action { width: 100%; margin-left: 0; }
-  .socials-section .social-card.is-todo .social-mark { margin-left: 0; }
+  .socials-section .social-card { flex-wrap: nowrap; padding: 12px; gap: 8px; }
+  .socials-section .social-card-text { flex: 1 1 auto; min-width: 0; }
+  .socials-section .social-icon-square { flex: 0 0 32px; width: 32px; height: 32px; }
+  .socials-section .social-name { font-size: .82rem; }
+  .socials-section .social-message-icon { flex-basis: 28px; width: 28px; height: 28px; border-radius: 8px; }
+  .socials-section .social-message-icon svg { width: 16px; height: 16px; }
+  .socials-section .social-card.is-todo .social-mark { margin-left: auto; font-size: .7rem; }
 }

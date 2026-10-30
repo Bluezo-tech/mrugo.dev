@@ -15,3 +15,24 @@
 .ebook-preview-grid .book-plain-icon { color: #e4b248; }
 .ebook-preview-grid .book-back { background: #171614; }
 .ebook-preview-grid .book-stage { padding-bottom: 24px; }
+
+.ebook-preview-grid .book-front::before {
+  content: "UGOCHUKWU";
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  color: #e4b248;
+  font-size: .55rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+.ebook-preview-grid .book-front::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(228,178,72,.38);
+  border-radius: 2px 6px 6px 2px;
+  pointer-events: none;
+}
+.ebook-preview-grid .book-plain { padding: 24px; }
+.ebook-preview-grid .book-plain strong { font-size: 1.1rem; }
