@@ -15,13 +15,11 @@ import SocialsSection from './components/SocialsSection'
 import ContactSection from './components/ContactSection'
 import SupportSection from './components/SupportSection'
 import { SKILLS } from './data/skills'
-import { BriefcaseIcon, HireBriefcaseIcon, ArrowRightIcon, BookIcon, TerminalIcon } from './components/Icons'
+import { SourceCodeCard } from './components/ProductCards'
+import './components/SourcePreview.css'
+import { BriefcaseIcon, HireBriefcaseIcon, ArrowRightIcon, BookIcon } from './components/Icons'
 import './App.css'
 import profilePhoto from './assets/images/ugo-profile.jpeg'
-
-const SOURCE_CODE_CARDS = [
-  { title: 'Coming soon', note: 'No code package is available yet.' },
-]
 
 const EBOOK_CARDS = [
   { title: 'Coming soon', note: 'No e-book is published yet.' },
@@ -104,15 +102,22 @@ function Home() {
       <SkillsSection />
       <ProjectsSection />
 
-      <PreviewSection
-        id="source-code"
-        eyebrow="SOURCE CODE"
-        headingBefore="Code drops,"
-        headingGold="coming soon"
-        subline="Once a project is finished and documented, the full code will be shared here. Nothing is available to download yet."
-        cards={SOURCE_CODE_CARDS}
-        Icon={TerminalIcon}
-      />
+      <section className="source-preview-section preview-section" id="source-code" data-reveal>
+        <div className="section-head">
+          <p className="section-label">SOURCE CODE</p>
+          <h2>Code drops, <span className="gold-text">coming soon</span></h2>
+          <p className="section-intro">No source code package is available yet.</p>
+        </div>
+        <div className="source-preview-grid">
+          <SourceCodeCard item={{
+            title: 'Source code coming soon',
+            description: 'The first documented project package will appear here when it is ready.',
+            zipName: 'ZIP package coming soon',
+            priceLabel: 'Not available yet',
+            buttonLabel: 'Coming soon',
+          }} />
+        </div>
+      </section>
 
       <PreviewSection
         id="ebooks"

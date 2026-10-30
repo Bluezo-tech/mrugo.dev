@@ -20,7 +20,20 @@
 .socials-section .social-card.is-todo .social-mark { font-size: 0.8rem; letter-spacing: 0; }
 .socials-section a.social-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 @media (max-width: 700px) {
-  .socials-section .socials-grid { grid-template-columns: 1fr; }
+  .socials-section .socials-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 28px; }
+  .socials-section .social-card {
+    box-sizing: border-box;
+    min-height: 58px;
+    padding: 10px 14px;
+    gap: 12px;
+    border-radius: 14px;
+  }
+  .socials-section .social-icon-square { width: 36px; height: 36px; flex-basis: 36px; border-radius: 10px; }
+  .socials-section .social-icon-square img,
+  .socials-section .social-brand-icon { width: 20px; height: 20px; }
+  .socials-section .social-detail { display: none; }
+  .socials-section .social-name { font-size: 0.9rem; }
+  .socials-section .social-card.is-todo .social-mark { font-size: 0.75rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .socials-section .social-card { transition: none; }

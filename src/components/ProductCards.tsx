@@ -144,7 +144,7 @@ export function SourceCodeCard({ item }: { item: SourceCode }) {
         <span className="zip-file-text">
           <span className="zip-name">{item.zipName}</span>
           <span className="zip-size">
-            ZIP archive{item.zipSize ? ` · ${item.zipSize}` : ""}
+            {!item.onSelect ? "No file available yet" : `ZIP archive${item.zipSize ? ` · ${item.zipSize}` : ""}`}
           </span>
         </span>
       </div>
@@ -159,7 +159,7 @@ export function SourceCodeCard({ item }: { item: SourceCode }) {
       )}
       <div className="zip-foot">
         <span className="zip-price">{item.priceLabel}</span>
-        <button type="button" className="zip-cta" onClick={item.onSelect}>
+        <button type="button" className="zip-cta" onClick={item.onSelect} disabled={!item.onSelect}>
           {item.buttonLabel || "Get the code"} ↗
         </button>
       </div>

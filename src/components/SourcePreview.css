@@ -1,0 +1,12 @@
+.source-preview-grid {
+  width: min(100%, 470px);
+  margin: 40px auto 0;
+}
+.source-preview-grid .zip-card { min-height: 250px; }
+.source-preview-grid .zip-cta:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+@media (max-width: 560px) {
+  .source-preview-grid { margin-top: 28px; }
+}
