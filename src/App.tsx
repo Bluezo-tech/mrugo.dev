@@ -17,7 +17,7 @@ import SupportSection from './components/SupportSection'
 import { SKILLS } from './data/skills'
 import { SourceCodeCard } from './components/ProductCards'
 import './components/SourcePreview.css'
-import { BriefcaseIcon, HireBriefcaseIcon, ArrowRightIcon, BookIcon } from './components/Icons'
+import { BriefcaseIcon, HireBriefcaseIcon, BookIcon } from './components/Icons'
 import './App.css'
 import profilePhoto from './assets/images/ugo-profile.jpeg'
 
@@ -63,7 +63,6 @@ function Home() {
           <Link className="hero-secondary-button" to="/hire">
             <HireBriefcaseIcon className="button-icon" />
             <span>Hire Me</span>
-            <ArrowRightIcon className="button-icon" />
           </Link>
         </div>
       </section>

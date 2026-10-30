@@ -12,7 +12,7 @@ function Experience() {
           <h3>Somtico Technologies Inc.</h3>
           <p>Junior Web Developer — Independent Contractor</p>
         </div>
-        <span className="experience-arrow" aria-hidden="true">↗</span>
+        
       </article>
 
       <article className="experience-item">
@@ -20,7 +20,7 @@ function Experience() {
           <h3>Stem Lantern</h3>
           <p>Social Media Manager &amp; Content Creator</p>
         </div>
-        <span className="experience-arrow" aria-hidden="true">↗</span>
+        
       </article>
 
       <article className="experience-item">
@@ -28,7 +28,7 @@ function Experience() {
           <h3>Bluezo Tech</h3>
           <p>Founder and Lead Developer</p>
         </div>
-        <span className="experience-arrow" aria-hidden="true">↗</span>
+        
       </article>
     </main>
   )

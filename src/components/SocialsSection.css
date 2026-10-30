@@ -39,3 +39,23 @@
   .socials-section .social-card { transition: none; }
   .socials-section a.social-card:hover { transform: none; }
 }
+
+.socials-section .social-message-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-height: 38px;
+  margin-left: auto;
+  padding: 0 13px;
+  border-radius: 10px;
+  background: var(--button);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.socials-section .social-message-action svg { width: 17px; height: 17px; }
+@media (max-width: 700px) {
+  .socials-section .social-message-action { min-height: 34px; padding: 0 10px; }
+}

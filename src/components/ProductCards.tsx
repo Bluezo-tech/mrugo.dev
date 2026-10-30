@@ -47,7 +47,7 @@ export function ProjectCard({ project }: { project: Project }) {
           </div>
         )}
         {project.liveUrl && (
-          <span className="project-link">View project ↗</span>
+          <span className="project-link">View project</span>
         )}
       </div>
     </>
@@ -115,7 +115,7 @@ export function EbookCard({ item }: { item: Ebook }) {
             className="book-btn"
             onClick={item.onSelect}
           >
-            {item.buttonLabel || "Get the e-book"} ↗
+            {item.buttonLabel || "Get the e-book"}
           </button>
         </div>
       </div>
@@ -160,7 +160,7 @@ export function SourceCodeCard({ item }: { item: SourceCode }) {
       <div className="zip-foot">
         <span className="zip-price">{item.priceLabel}</span>
         <button type="button" className="zip-cta" onClick={item.onSelect} disabled={!item.onSelect}>
-          {item.buttonLabel || "Get the code"} ↗
+          {item.buttonLabel || "Get the code"}
         </button>
       </div>
     </div>
@@ -224,7 +224,7 @@ export function ClassCard({ course }: { course: Course }) {
         <div className="course-foot">
           <span className="course-price">{course.priceLabel}</span>
           <button type="button" className="course-btn" onClick={course.onSelect}>
-            {course.buttonLabel || "Enroll now"} ↗
+            {course.buttonLabel || "Enroll now"}
           </button>
         </div>
       </div>
