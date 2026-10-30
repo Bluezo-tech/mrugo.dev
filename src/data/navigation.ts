@@ -35,7 +35,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Projects', to: '/projects', Icon: FolderKanbanIcon, spyId: null },
   // { label: 'Source Code', to: '/source-code', Icon: CodeXmlIcon, spyId: null },
   { label: 'E-books', to: '/ebooks', Icon: BookOpenIcon, spyId: null },
-  // { label: 'Classes', to: '/classes', Icon: GraduationCapIcon, spyId: null },
+  { label: 'Classes', to: '/classes', Icon: GraduationCapIcon, spyId: null },
   // { label: 'Socials', to: '/socials', Icon: ShareIcon, spyId: null },
   { label: 'Contact', to: '/contact', Icon: MailIcon, spyId: null },
   { label: 'Support', to: '/support', Icon: HandCoinsIcon, spyId: null },

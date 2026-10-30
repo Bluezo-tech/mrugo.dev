@@ -15,20 +15,16 @@ import SocialsSection from './components/SocialsSection'
 import ContactSection from './components/ContactSection'
 import SupportSection from './components/SupportSection'
 import { SKILLS } from './data/skills'
-import { BriefcaseIcon, EnvelopeIcon, BookIcon, TerminalIcon } from './components/Icons'
+import { BriefcaseIcon, HireBriefcaseIcon, ArrowRightIcon, BookIcon, TerminalIcon } from './components/Icons'
 import './App.css'
 import profilePhoto from './assets/images/ugo-profile.jpeg'
 
 const SOURCE_CODE_CARDS = [
-  { title: 'Project package', note: 'TODO: package name and what it contains' },
-  { title: 'Download', note: 'TODO: where it will be available' },
-  { title: 'More to come', note: 'TODO: price, only if you decide to sell' },
+  { title: 'Coming soon', note: 'No code package is available yet.' },
 ]
 
 const EBOOK_CARDS = [
-  { title: 'First guide', note: 'TODO: title and topic' },
-  { title: 'Reading format', note: 'TODO: PDF, web, or both' },
-  { title: 'More to come', note: 'TODO: price, only if you decide to sell' },
+  { title: 'Coming soon', note: 'No e-book is published yet.' },
 ]
 
 function Home() {
@@ -67,8 +63,9 @@ function Home() {
             <span>View My Experience</span>
           </Link>
           <Link className="hero-secondary-button" to="/hire">
-            <EnvelopeIcon className="button-icon" />
+            <HireBriefcaseIcon className="button-icon" />
             <span>Hire Me</span>
+            <ArrowRightIcon className="button-icon" />
           </Link>
         </div>
       </section>
@@ -127,7 +124,6 @@ function Home() {
         Icon={BookIcon}
       />
 
-      <ClassesSection />
       <SocialsSection />
       <ContactSection />
       <SupportSection />
