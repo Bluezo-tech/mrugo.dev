@@ -4,6 +4,7 @@ import Projects from './pages/Projects'
 import SourceCode from './pages/SourceCode'
 import Ebooks from './pages/Ebooks'
 import NotFound from './pages/NotFound'
+import Hire from './pages/Hire'
 import Layout from './components/Layout'
 import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
@@ -65,9 +66,9 @@ function Home() {
             <BriefcaseIcon className="button-icon" />
             <span>View My Experience</span>
           </Link>
-          <Link className="hero-secondary-button" to="/contact">
+          <Link className="hero-secondary-button" to="/hire">
             <EnvelopeIcon className="button-icon" />
-            <span>Get in touch</span>
+            <span>Hire Me</span>
           </Link>
         </div>
       </section>
@@ -150,25 +151,7 @@ function App() {
           <Route path="/socials" element={<main><SocialsSection /></main>} />
           <Route path="/contact" element={<main><ContactSection /></main>} />
           <Route path="/support" element={<main><SupportSection /></main>} />
-          <Route
-            path="/hire"
-            element={
-              <main>
-                <section className="page-section">
-                  <div className="section-head">
-                    <p className="section-label">HIRE ME</p>
-                    <h2>
-                      Hire <span className="gold-text">Me</span>
-                    </h2>
-                    <p className="section-intro">
-                      Full hire form coming soon — for now, reach me through the{' '}
-                      <Link to="/contact">Contact page</Link>.
-                    </p>
-                  </div>
-                </section>
-              </main>
-            }
-          />
+          <Route path="/hire" element={<Hire />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
