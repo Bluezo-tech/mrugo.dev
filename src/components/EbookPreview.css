@@ -1,0 +1,17 @@
+.ebook-preview-grid {
+  width: min(100%, 390px);
+  margin: 40px auto 0;
+}
+.ebook-preview-grid .book-btn:disabled { opacity: .55; cursor: default; }
+@media (max-width: 560px) {
+  .ebook-preview-grid { margin-top: 28px; }
+}
+
+.ebook-preview-grid .book-front {
+  background: #211f1b;
+  box-shadow: 0 22px 36px rgba(0,0,0,.22);
+}
+.ebook-preview-grid .book-plain strong { color: #fff; line-height: 1.3; }
+.ebook-preview-grid .book-plain-icon { color: #e4b248; }
+.ebook-preview-grid .book-back { background: #171614; }
+.ebook-preview-grid .book-stage { padding-bottom: 24px; }

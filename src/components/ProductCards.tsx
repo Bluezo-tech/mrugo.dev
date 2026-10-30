@@ -1,4 +1,4 @@
-import { BookIcon, FolderKanbanIcon, GraduationIcon, TerminalIcon } from "./Icons";
+import { BookIcon, FolderKanbanIcon, GraduationIcon } from "./Icons";
 
 // src/components/ProductCards.tsx — TUNED from Bayo's ClassCard, EbookCard,
 // ProjectCard and SourceCodeCard.
@@ -114,6 +114,7 @@ export function EbookCard({ item }: { item: Ebook }) {
             type="button"
             className="book-btn"
             onClick={item.onSelect}
+            disabled={!item.onSelect}
           >
             {item.buttonLabel || "Get the e-book"}
           </button>
@@ -139,7 +140,10 @@ export function SourceCodeCard({ item }: { item: SourceCode }) {
     <div className="list-card zip-card">
       <div className="zip-file">
         <span className="zip-icon">
-          <TerminalIcon className="zip-icon-mark" />
+          <svg className="zip-icon-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <path d="M14 2v6h6M10 3v2M10 7v2M10 11v2M10 15v2M8.5 19h3" />
+          </svg>
         </span>
         <span className="zip-file-text">
           <span className="zip-name">{item.zipName}</span>

@@ -9,21 +9,17 @@ import Layout from './components/Layout'
 import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
 import ProjectsSection from './components/ProjectsSection'
-import PreviewSection from './components/PreviewSection'
 import ClassesSection from './components/ClassesSection'
 import SocialsSection from './components/SocialsSection'
 import ContactSection from './components/ContactSection'
 import SupportSection from './components/SupportSection'
 import { SKILLS } from './data/skills'
-import { SourceCodeCard } from './components/ProductCards'
+import { SourceCodeCard, EbookCard } from './components/ProductCards'
 import './components/SourcePreview.css'
-import { BriefcaseIcon, HireBriefcaseIcon, BookIcon } from './components/Icons'
+import './components/EbookPreview.css'
+import { BriefcaseIcon, HireBriefcaseIcon } from './components/Icons'
 import './App.css'
 import profilePhoto from './assets/images/ugo-profile.jpeg'
-
-const EBOOK_CARDS = [
-  { title: 'Coming soon', note: 'No e-book is published yet.' },
-]
 
 function Home() {
   return (
@@ -118,15 +114,20 @@ function Home() {
         </div>
       </section>
 
-      <PreviewSection
-        id="ebooks"
-        eyebrow="E-BOOKS"
-        headingBefore="Guides,"
-        headingGold="coming soon"
-        subline="Practical write-ups from the things I build. No books are published yet."
-        cards={EBOOK_CARDS}
-        Icon={BookIcon}
-      />
+      <section className="ebook-preview-section preview-section" id="ebooks" data-reveal>
+        <div className="section-head">
+          <p className="section-label">E-BOOKS</p>
+          <h2>Guides, <span className="gold-text">coming soon</span></h2>
+          <p className="section-intro">No e-book is published yet.</p>
+        </div>
+        <div className="ebook-preview-grid">
+          <EbookCard item={{
+            title: 'E-book coming soon',
+            priceLabel: 'Not available yet',
+            buttonLabel: 'Coming soon',
+          }} />
+        </div>
+      </section>
 
       <SocialsSection />
       <ContactSection />
