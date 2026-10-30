@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { CONTACT } from '../data/content'
 import { ClockIcon, EnvelopeIcon } from './Icons'
+import './ContactSection.css'
 
 const MAX_MESSAGE = 5000
 
@@ -112,14 +113,16 @@ function ContactSection() {
 
             <button className="form-submit" type="submit">
               Send message{' '}
-              <EnvelopeIcon className="button-icon" />
+              <svg className="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
 
         <p className="form-note">
-          This opens your own email app with the message ready to send. Nothing
-          is stored or sent from this website.
+          Opens your email app. Nothing is sent by this website.
         </p>
       </form>
     </section>

@@ -1,0 +1,11 @@
+@media (max-width: 640px) {
+  .contact-section .contact-form { gap: 8px; padding: 16px; margin-top: 16px; border-radius: 20px; }
+  .contact-section .form-columns { gap: 12px; }
+  .contact-section .form-field-message { gap: 6px; padding-bottom: 8px; }
+  .contact-section .form-field-message .form-textarea { box-sizing: border-box; height: 110px; min-height: 110px; }
+  .contact-section .form-side { gap: 10px; }
+  .contact-section .form-field { gap: 5px; }
+  .contact-section .form-input { padding: 10px 12px; }
+  .contact-section .form-submit { min-height: 44px; margin-top: 2px; }
+  .contact-section .form-note { font-size: .75rem; line-height: 1.4; }
+}

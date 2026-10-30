@@ -20,7 +20,7 @@
 .socials-section .social-card.is-todo .social-mark { font-size: 0.8rem; letter-spacing: 0; }
 .socials-section a.social-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 @media (max-width: 700px) {
-  .socials-section .socials-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 28px; }
+  .socials-section .socials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 28px; }
   .socials-section .social-card {
     box-sizing: border-box;
     min-height: 58px;
@@ -58,4 +58,11 @@
 .socials-section .social-message-action svg { width: 17px; height: 17px; }
 @media (max-width: 700px) {
   .socials-section .social-message-action { min-height: 34px; padding: 0 10px; }
+}
+
+@media (max-width: 700px) {
+  .socials-section .social-card { flex-wrap: wrap; min-width: 0; padding: 12px; }
+  .socials-section .social-card-text { flex-basis: calc(100% - 48px); }
+  .socials-section .social-message-action { width: 100%; margin-left: 0; }
+  .socials-section .social-card.is-todo .social-mark { margin-left: 0; }
 }
