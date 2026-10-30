@@ -1,5 +1,6 @@
 import { type ReactElement } from 'react'
 import { STATS } from '../data/content'
+import CountUp from './CountUp'
 
 /** Small line icons drawn for these stat cards (not a copied icon set). */
 const STAT_ICONS: Record<string, ReactElement> = {
@@ -10,14 +11,14 @@ const STAT_ICONS: Record<string, ReactElement> = {
       <path d="M8 14h3v3H8z" />
     </svg>
   ),
-  projects: (
+  skills: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 3l8 4.5-8 4.5-8-4.5L12 3z" />
       <path d="M4 12l8 4.5 8-4.5" />
       <path d="M4 16.5L12 21l8-4.5" />
     </svg>
   ),
-  clients: (
+  roles: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
       <circle cx="9" cy="8" r="3.2" />
       <path d="M3 20.5c0-3.1 2.7-5.6 6-5.6s6 2.5 6 5.6" />
@@ -49,13 +50,13 @@ function AboutSection() {
       <div className="stats-row">
         {STATS.map((stat) => (
           <div
-            className={stat.todo ? 'stat-card is-todo' : 'stat-card'}
+            className="stat-card"
             key={stat.id}
           >
             <span className="stat-icon" aria-hidden="true">
               {STAT_ICONS[stat.id]}
             </span>
-            <p className="stat-value">{stat.value}</p>
+            <p className="stat-value"><CountUp value={stat.value} suffix={stat.suffix} /></p>
             <p className="stat-label">{stat.label}</p>
             <span className="stat-rule" aria-hidden="true" />
           </div>

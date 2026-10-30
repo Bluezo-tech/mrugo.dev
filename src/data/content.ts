@@ -72,15 +72,15 @@ export const CURRENT_PROJECT_TODO = {
 }
 
 export type Stat = {
-  id: string
-  value: string
+  id: 'years' | 'skills' | 'roles'
+  value: number
+  suffix?: string
   label: string
-  todo: boolean
 }
 
-/** Bayo's layout is 3 stat cards. Values are HIS numbers — ours are TODO. */
+/** Confirmed experience, the 13 listed skills, and three named roles. */
 export const STATS: Stat[] = [
-  { id: 'years', value: 'TODO', label: 'Years experience', todo: true },
-  { id: 'projects', value: 'TODO', label: 'Projects built', todo: true },
-  { id: 'clients', value: 'TODO', label: 'Clients served', todo: true },
+  { id: 'years', value: 1, suffix: '+', label: 'Years of experience' },
+  { id: 'skills', value: 13, label: 'Skills' },
+  { id: 'roles', value: 3, suffix: '+', label: 'Professional roles' },
 ]
