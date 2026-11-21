@@ -178,7 +178,7 @@ Deno.serve(async (req) => {
     const callback = `${origin}/payment/return`
     let payment: { status?: boolean; data?: { authorization_url?: string; reference?: string }; message?: string }
     try {
-      const channels = kind === 'support' ? (currency === 'NGN' ? ['card', 'bank_transfer', 'apple_pay'] : ['card', 'apple_pay']) : undefined
+      const channels = kind === 'support' ? (currency === 'NGN' ? ['card', 'bank_transfer', 'apple_pay', 'google_pay'] : ['card', 'apple_pay', 'google_pay']) : undefined
       const res = await fetch('https://api.paystack.co/transaction/initialize', { method: 'POST', headers: { Authorization: `Bearer ${paystackKey()}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ email, amount: amountMinor, currency, channels, reference, callback_url: callback, metadata: { order_id: reference, kind } }) })
       payment = await res.json()
     } catch { return respond(503, { error: 'Payment provider is unavailable. Please try again.' }, origin) }
