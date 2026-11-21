@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { CloseIcon } from "./Icons";
 import type { ShopKind } from "../utils/shop";
+import { startPayment } from "../lib/payments";
 
 // src/components/CheckoutModal.tsx — TUNED from Bayo's checkout modal.
 // What changed from Bayo:
@@ -14,6 +15,7 @@ import type { ShopKind } from "../utils/shop";
 //   title, price label and description — nothing is invented in this file.
 
 export type CheckoutItem = {
+  productId: string;
   title: string;
   kind: ShopKind;
   priceLabel: string;
@@ -38,6 +40,7 @@ export default function CheckoutModal({ item, onClose }: CheckoutModalProps) {
   const [name, setName] = useState("");
   const [website, setWebsite] = useState("");
   const [status, setStatus] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const emailRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -64,7 +67,7 @@ export default function CheckoutModal({ item, onClose }: CheckoutModalProps) {
     };
   }, [onClose]);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (website) return; // honeypot
     if (!email.trim()) {
@@ -72,10 +75,15 @@ export default function CheckoutModal({ item, onClose }: CheckoutModalProps) {
       emailRef.current?.focus();
       return;
     }
-    // TODO: wire a real payment/download link here when you supply one.
-    setStatus(
-      "Checkout is not connected yet — no payment was taken and nothing was sent.",
-    );
+    if (item.kind !== 'source' && item.kind !== 'ebook') return;
+    setSubmitting(true);
+    setStatus('');
+    try {
+      await startPayment({ kind: item.kind, product_id: item.productId, email: email.trim(), name: name.trim(), website });
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : 'Could not start checkout. Please try again.');
+      setSubmitting(false);
+    }
   }
 
   return createPortal(
@@ -147,8 +155,8 @@ export default function CheckoutModal({ item, onClose }: CheckoutModalProps) {
           </div>
         </div>
         <div className="co-foot">
-          <button className="co-pay-btn" type="submit">
-            Pay {item.priceLabel}
+          <button className="co-pay-btn" type="submit" disabled={submitting}>
+            {submitting ? 'Opening secure checkout…' : `Pay ${item.priceLabel}`}
           </button>
         </div>
       </form>

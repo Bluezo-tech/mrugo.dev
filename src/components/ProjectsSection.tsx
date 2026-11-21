@@ -6,12 +6,12 @@ function ProjectsSection() {
   return (
     <section className="projects-section" id="projects" data-reveal>
       <div className="section-head">
-        <p className="section-label">MY WORK</p>
+        <p className="section-label">INDEPENDENT WORK</p>
         <h2>
-          Featured <span className="gold-text">projects</span>
+          Projects &amp; <span className="gold-text">samples</span>
         </h2>
         <p className="section-intro">
-          My first featured project will appear here when it's ready to share.
+          Independent projects and sample work will appear here when they’re ready to share. My contributions to organizations are documented on the Experience page.
         </p>
       </div>
 
@@ -27,7 +27,6 @@ function ProjectsSection() {
             <p className="project-status">In progress</p>
             <h3>{CURRENT_PROJECT_TODO.title}</h3>
             <p className="project-copy">{CURRENT_PROJECT_TODO.body}</p>
-            <p className="project-preview-note">Name, stack and link coming soon.</p>
           </div>
         </article>
       </div>

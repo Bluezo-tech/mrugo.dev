@@ -1,3 +1,5 @@
+import { SKILLS } from './skills'
+
 export type Social = {
   id: string
   label: string
@@ -13,8 +15,7 @@ export type Social = {
 }
 
 /**
- * Only WhatsApp is a confirmed account (the link already existed in this
- * project). GitHub / X / LinkedIn remain unconfirmed placeholders.
+ * These links were supplied by Ugo.
  */
 export const SOCIALS: Social[] = [
   {
@@ -30,27 +31,41 @@ export const SOCIALS: Social[] = [
   {
     id: 'github',
     label: 'GitHub',
-    detail: 'Profile link coming soon',
+    detail: 'Explore Bluezo Tech code',
     iconSlug: 'github',
-    iconColor: '9a9a9a',
+    iconColor: '181717',
     tint: 'rgba(31, 31, 31, 0.06)',
-    todo: true,
+    href: 'https://github.com/Bluezo-tech',
+    todo: false,
   },
   {
     id: 'x',
     label: 'X',
-    detail: 'Profile link coming soon',
+    detail: 'Follow Bluezo Tech',
     iconSlug: 'x',
-    iconColor: '9a9a9a',
+    iconColor: '000000',
     tint: 'rgba(31, 31, 31, 0.06)',
-    todo: true,
+    href: 'https://x.com/bluezo_tech',
+    todo: false,
   },
   {
     id: 'linkedin',
     label: 'LinkedIn',
-    detail: 'Profile link coming soon',
+    detail: 'Connect with Ugochukwu',
+    iconColor: '0A66C2',
+    tint: 'rgba(10, 102, 194, 0.12)',
+    href: 'https://www.linkedin.com/in/ugochukwu-chukwuekem/',
+    todo: false,
+  },
+  {
+    id: 'tiktok',
+    label: 'TikTok',
+    detail: 'Watch Bluezo Tech',
+    iconSlug: 'tiktok',
+    iconColor: '000000',
     tint: 'rgba(31, 31, 31, 0.06)',
-    todo: true,
+    href: 'https://www.tiktok.com/@bluezotech',
+    todo: false,
   },
 
 ]
@@ -72,15 +87,15 @@ export const CURRENT_PROJECT_TODO = {
 }
 
 export type Stat = {
-  id: 'years' | 'skills' | 'roles'
+  id: 'skills' | 'roles'
   value: number
   suffix?: string
   label: string
 }
 
-/** Confirmed experience, the 13 listed skills, and three named roles. */
+/** Confirmed skills and organizations, without a years-of-experience claim. */
 export const STATS: Stat[] = [
-  { id: 'years', value: 1, suffix: '+', label: 'Years of experience' },
-  { id: 'skills', value: 13, label: 'Skills' },
-  { id: 'roles', value: 3, suffix: '+', label: 'Professional roles' },
+  { id: 'skills', value: SKILLS.length, label: 'Skills and tools' },
+  { id: 'roles', value: 4, label: 'Organizations I work with' },
 ]
+

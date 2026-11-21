@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Mr Ugo — Full-Stack Developer</title>
+  <desc id="desc">Chukwuekem Melchizedek builds useful software for real problems.</desc>
+  <rect width="1200" height="630" fill="#f9f8f7"/>
+  <circle cx="1058" cy="98" r="240" fill="#f0e1e2"/>
+  <circle cx="1090" cy="530" r="280" fill="#e9c9cc"/>
+  <path d="M0 526h1200" stroke="#ddd7d5" stroke-width="2"/>
+  <circle cx="112" cy="106" r="42" fill="#fff" stroke="#c7d7d2" stroke-width="3"/>
+  <text x="112" y="124" text-anchor="middle" font-family="Arial,sans-serif" font-size="52" font-weight="700" fill="#831823">U</text>
+  <text x="182" y="121" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#1c1d20">Mr Ugo</text>
+  <text x="70" y="292" font-family="Arial,sans-serif" font-size="62" font-weight="700" fill="#1c1d20">I build useful software</text>
+  <text x="70" y="370" font-family="Arial,sans-serif" font-size="62" font-weight="700" fill="#831823">for real problems.</text>
+  <text x="73" y="448" font-family="Arial,sans-serif" font-size="29" fill="#4a505b">Chukwuekem Melchizedek · Full-Stack Developer</text>
+  <text x="72" y="581" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="#831823">Projects · Experience · Digital tools</text>
+</svg>

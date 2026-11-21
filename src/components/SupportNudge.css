@@ -1,0 +1,13 @@
+.support-nudge{display:none}
+@media(max-width:700px){
+  .support-nudge{position:fixed;left:14px;right:14px;bottom:max(14px,env(safe-area-inset-bottom));z-index:75;display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:10px;padding:15px 14px;border:1px solid #e7dce0;border-radius:20px;background:#fff;box-shadow:0 16px 48px #1515152b;animation:support-nudge-in .35s ease-out both}
+  .support-nudge-mark{width:40px;height:40px;display:grid;place-items:center;overflow:hidden;border-radius:50%}
+  .support-nudge-copy{display:grid;gap:2px;min-width:0;color:#17171a}
+  .support-nudge-copy strong{font-size:13px;line-height:1.25}
+  .support-nudge-copy span{font-size:11px;line-height:1.35;color:#6a6a70}
+  .support-nudge-action{align-self:center;border:0;border-radius:12px;background:#17171a;color:#fff;padding:10px 12px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+  .support-nudge-action:focus-visible,.support-nudge-close:focus-visible{outline:3px solid #a53145;outline-offset:2px}
+  .support-nudge-close{position:absolute;right:7px;top:2px;border:0;background:none;color:#777;font-size:20px;line-height:1;cursor:pointer}
+  @keyframes support-nudge-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+}
+@media(prefers-reduced-motion:reduce){.support-nudge{animation:none}}

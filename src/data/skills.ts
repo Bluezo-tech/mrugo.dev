@@ -1,5 +1,10 @@
+import capcutLogo from '../assets/brands/capcut.svg'
+import canvaLogo from '../assets/brands/canva.svg'
+import linkedinLogo from '../assets/brands/linkedin.svg'
+
 export type SkillIcon = {
-  slug: string
+  slug?: string
+  src?: string
   /** Hex used on the dark marquee strip. */
   onDark: string
   /** Hex used on the light skills cards. */
@@ -8,7 +13,7 @@ export type SkillIcon = {
 
 export type Skill = {
   name: string
-  group: 'Frontend' | 'Backend and data' | 'AI and automation'
+  group: 'Frontend and CMS' | 'Backend and data' | 'AI and automation' | 'Content and social media'
   icon?: SkillIcon
   symbol?: string
 }
@@ -21,22 +26,22 @@ export type Skill = {
 export const SKILLS: Skill[] = [
   {
     name: 'JavaScript',
-    group: 'Frontend',
+    group: 'Frontend and CMS',
     icon: { slug: 'javascript', onDark: 'F7DF1E', onLight: 'F7DF1E' },
   },
   {
     name: 'TypeScript',
-    group: 'Frontend',
+    group: 'Frontend and CMS',
     icon: { slug: 'typescript', onDark: '3178C6', onLight: '3178C6' },
   },
   {
     name: 'React',
-    group: 'Frontend',
+    group: 'Frontend and CMS',
     icon: { slug: 'react', onDark: '61DAFB', onLight: '61DAFB' },
   },
   {
     name: 'Next.js',
-    group: 'Frontend',
+    group: 'Frontend and CMS',
     icon: { slug: 'nextdotjs', onDark: 'FFFFFF', onLight: '111111' },
   },
   {
@@ -81,12 +86,26 @@ export const SKILLS: Skill[] = [
   },
   {
     name: 'Tailwind CSS',
-    group: 'Frontend',
+    group: 'Frontend and CMS',
     icon: { slug: 'tailwindcss', onDark: '06B6D4', onLight: '06B6D4' },
   },
+  {
+    name: 'WordPress',
+    group: 'Frontend and CMS',
+    icon: { slug: 'wordpress', onDark: 'FFFFFF', onLight: '21759B' },
+  },
+  { name: 'CapCut', group: 'Content and social media', icon: { src: capcutLogo, onDark: 'FFFFFF', onLight: '111111' } },
+  { name: 'Meta Business Suite', group: 'Content and social media', icon: { slug: 'meta', onDark: '64A7FF', onLight: '0467DF' } },
+  { name: 'Canva', group: 'Content and social media', icon: { src: canvaLogo, onDark: 'FFFFFF', onLight: 'FFFFFF' } },
+  { name: 'LinkedIn', group: 'Content and social media', icon: { src: linkedinLogo, onDark: 'FFFFFF', onLight: '0A66C2' } },
+  { name: 'TikTok', group: 'Content and social media', icon: { slug: 'tiktok', onDark: 'FFFFFF', onLight: '111111' } },
+  { name: 'YouTube', group: 'Content and social media', icon: { slug: 'youtube', onDark: 'FF0033', onLight: 'FF0033' } },
+  { name: 'X', group: 'Content and social media', icon: { slug: 'x', onDark: 'FFFFFF', onLight: '111111' } },
 ]
 
-const GROUP_ORDER = ['Frontend', 'Backend and data', 'AI and automation'] as const
+export const MARQUEE_SKILLS: Skill[] = [...SKILLS]
+
+const GROUP_ORDER = ['Frontend and CMS', 'Backend and data', 'AI and automation', 'Content and social media'] as const
 
 /** The same skills, grouped for the Skills section cards. */
 export const SKILL_GROUPS = GROUP_ORDER.map((title) => ({

@@ -6,9 +6,9 @@ function NotFound() {
       <section className="page-section" data-reveal>
         <div className="section-head">
           <p className="section-label">404</p>
-          <h2>
+          <h1>
             That page <span className="gold-text">isn't here</span>
-          </h2>
+          </h1>
           <p className="section-intro">
             The link may be old, or the address may have a typo. These two will
             get you back on track.

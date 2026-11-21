@@ -1,78 +1,147 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
-import { CloseIcon, HeartIcon } from "./Icons";
-
-// src/components/SupportModal.tsx — TUNED from Bayo's support sheet.
-// What changed from Bayo:
-// - REMOVED: fetch to /api/support/options and /api/support/init, USD rail,
-//   localStorage buyer remember, tracking event. No payment is taken here.
-// - KEPT: the sheet layout, amount presets, email/name fields, honeypot
-//   website field, Escape / click-outside to close, body scroll lock.
-// - Amounts are YOUR support tiers (from your own specification), not a
-//   backend fetch. Until you supply a payment link, the pay button shows
-//   "Checkout not connected yet" and charges nobody. That is deliberate.
+import { startPayment } from "../lib/payments";
+import {
+  CloseIcon,
+  LockIcon,
+} from "./Icons";
+import {
+  formatCurrencyAmount,
+  SUPPORT_CURRENCIES,
+  type SupportCurrency,
+} from "../utils/shop";
+import { useSupportCurrency } from "../hooks/useSupportCurrency";
 
 type SupportModalProps = {
   onClose: () => void;
+  initialCurrency?: SupportCurrency;
+  initialAmount?: number;
   presetAmounts?: number[];
 };
 
-const DEFAULT_PRESETS = [2000, 5000, 10000, 20000];
-
 export default function SupportModal({
   onClose,
-  presetAmounts = DEFAULT_PRESETS,
+  initialCurrency,
+  initialAmount,
+  presetAmounts,
 }: SupportModalProps) {
-  const [amount, setAmount] = useState<string>("");
+  const currency = useSupportCurrency();
+  const [amount, setAmount] = useState<string>(
+    typeof initialAmount === "number" && initialAmount > 0
+      ? String(initialAmount)
+      : "",
+  );
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [website, setWebsite] = useState("");
   const [status, setStatus] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState<number>(() =>
+    typeof window !== "undefined" ? window.innerHeight : 0,
+  );
   const amountRef = useRef<HTMLInputElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setReady(true), 900);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  const config = SUPPORT_CURRENCIES[currency];
+  const presets =
+    currency === "NGN" && presetAmounts ? presetAmounts : config.presets;
+  const numericAmount = Number(amount.replace(/[^\d]/g, ""));
+  const formattedAmount = amount
+    ? formatCurrencyAmount(numericAmount, currency)
+    : "";
+  // Bayo's pay button stays DISABLED (opacity .7, no hover lift)
+  // until there is a valid amount — see his button HTML:
+  // <button class="co-pay-btn" disabled>Support</button>, captured
+  // WITH his email already filled in and the amount empty. So the
+  // gate is the amount only; email is checked on submit, below.
+  // (First version of this gate also demanded a valid email first —
+  // stricter than Bayo, and wrong: at $50 with the email still
+  // empty his button is solid, Ugo's stayed grey. Fixed.)
+  const canSubmit = numericAmount >= config.min && numericAmount <= config.max;
+
+  // If a support-strip chip opened this modal with an amount, carry
+  // that exact amount + currency in, so the visitor only fills in
+  // email/name instead of picking the price again. This syncs on
+  // prop changes too (not just first mount), in case the modal is
+  // already mounted when a different chip is clicked.
+  useEffect(() => {
+    if (typeof initialAmount === "number" && initialAmount > 0) {
+      setAmount(String(initialAmount));
+    }
+  }, [initialAmount]);
+
+  useEffect(() => {
+    if (initialCurrency && initialCurrency !== currency) setAmount('');
+  }, [initialCurrency, currency]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
+    const onResize = () => setViewportHeight(window.innerHeight);
     document.addEventListener("keydown", onKey);
-    const scrollY = window.scrollY;
+    window.addEventListener("resize", onResize);
     const body = document.body;
-    const prev = {
-      position: body.style.position,
-      top: body.style.top,
-      overflow: body.style.overflow,
-    };
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
+    const root = document.documentElement;
+    const previousBodyOverflow = body.style.overflow;
+    const previousRootOverflow = root.style.overflow;
     body.style.overflow = "hidden";
+    root.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
-      body.style.position = prev.position;
-      body.style.top = prev.top;
-      body.style.overflow = prev.overflow;
-      window.scrollTo(0, scrollY);
+      window.removeEventListener("resize", onResize);
+      body.style.overflow = previousBodyOverflow;
+      root.style.overflow = previousRootOverflow;
     };
   }, [onClose]);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (website) return; // honeypot: bots fill this, humans never see it
-    const value = Number(amount.replace(/[^\d]/g, ""));
-    if (!value || value < 500) {
-      setStatus("Choose an amount of at least ₦500.");
+    if (!numericAmount || numericAmount < config.min) {
+      setStatus(
+        `Choose an amount of at least ${formatCurrencyAmount(
+          config.min,
+          currency,
+        )}.`,
+      );
       amountRef.current?.focus();
       return;
     }
-    if (!email.trim()) {
-      setStatus("Add an email address so a receipt can reach you.");
+    if (numericAmount > config.max) {
+      setStatus(
+        `The most you can send in one go is ${formatCurrencyAmount(
+          config.max,
+          currency,
+        )}.`,
+      );
+      amountRef.current?.focus();
       return;
     }
-    // TODO: wire a real payment link here when you supply one.
-    // Do not present this button as live until then.
-    setStatus(
-      "Checkout is not connected yet — no payment was taken. Add your payment link to enable this.",
-    );
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setStatus("Add a valid email address so a receipt can reach you.");
+      return;
+    }
+    if (!name.trim()) {
+      setStatus("Add your name to continue.");
+      return;
+    }
+    setSubmitting(true);
+    setStatus("");
+    try {
+      await startPayment({ kind: 'support', amount: numericAmount, currency,
+        email: email.trim(), name: name.trim(), website });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Could not start checkout. Please try again.';
+      setStatus(message);
+      setSubmitting(false);
+    }
   }
 
   return createPortal(
@@ -80,17 +149,19 @@ export default function SupportModal({
       className="co-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Support"
+      aria-label="Support Mr Ugo"
+      style={{ "--co-h": `${viewportHeight}px`, "--kb": "0px" } as CSSProperties}
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <form className="co-modal sup-sheet" onSubmit={handleSubmit}>
+      <span className="co-fill" aria-hidden="true" />
+      {ready ? <form className="co-modal sup-sheet" onSubmit={handleSubmit}>
         <span className="co-grab" aria-hidden="true" />
         <div className="co-head">
           <div className="co-item">
-            <h3>Support the work</h3>
-            <p>Keeps the free classes, code and guides coming.</p>
+            <h3>Support Mr Ugo</h3>
+            <p>Support what I'm building next</p>
           </div>
           <button
             type="button"
@@ -103,10 +174,11 @@ export default function SupportModal({
         </div>
         <div className="co-body" ref={dialogRef}>
           {status && <div className="form-status">{status}</div>}
+          <p className="sup-payment-methods">{config.label} · {config.sublabel}</p>
           <div className="field">
             <label htmlFor="sup-amount">Amount</label>
             <div className="sup-amount">
-              <span aria-hidden="true">₦</span>
+              <span aria-hidden="true">{config.symbol}</span>
               <input
                 id="sup-amount"
                 ref={amountRef}
@@ -114,21 +186,21 @@ export default function SupportModal({
                 inputMode="numeric"
                 autoComplete="off"
                 placeholder="0"
-                value={amount ? Number(amount).toLocaleString("en-US") : ""}
+                value={amount ? numericAmount.toLocaleString("en-US") : ""}
                 onChange={(e) =>
                   setAmount(e.target.value.replace(/[^\d]/g, "").slice(0, 9))
                 }
               />
             </div>
             <div className="sup-quick" aria-label="Quick amounts">
-              {presetAmounts.map((preset) => (
+              {presets.map((preset) => (
                 <button
                   key={preset}
                   type="button"
-                  className={Number(amount) === preset ? "is-on" : undefined}
+                  className={numericAmount === preset ? "is-on" : undefined}
                   onClick={() => setAmount(String(preset))}
                 >
-                  ₦{preset.toLocaleString("en-NG")}
+                  {formatCurrencyAmount(preset, currency)}
                 </button>
               ))}
             </div>
@@ -139,22 +211,24 @@ export default function SupportModal({
               id="sup-email"
               type="email"
               required
-              value={email}
               placeholder="you@example.com"
               autoComplete="email"
+              inputMode="email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="field">
             <label htmlFor="sup-name">
-              Name <span className="co-optional">(optional)</span>
+              Name
             </label>
             <input
               id="sup-name"
               type="text"
-              value={name}
+              required
               placeholder="Your name"
               autoComplete="name"
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -171,14 +245,15 @@ export default function SupportModal({
           </div>
         </div>
         <div className="co-foot">
-          <button className="co-pay-btn" type="submit">
-            <HeartIcon className="co-pay-icon" />
-            {amount
-              ? `Support with ₦${Number(amount).toLocaleString("en-NG")}`
+          <button className="co-pay-btn" type="submit" disabled={!canSubmit || submitting}>
+            <LockIcon className="co-pay-icon" />
+            {submitting ? 'Opening secure checkout…' : formattedAmount
+              ? `Support with ${formattedAmount}`
               : "Support"}
           </button>
+          <p className="sup-payment-methods">Secure checkout by Paystack</p>
         </div>
-      </form>
+      </form> : <div className="support-loading" role="status">One moment...</div>}
     </div>,
     document.body,
   );

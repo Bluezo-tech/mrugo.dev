@@ -1,0 +1,50 @@
+.hire-page,.hire-page *{box-sizing:border-box}
+.hire-page{min-height:100dvh;padding:25px 16px 88px;background:#f5f5f7;font-family:Inter,sans-serif}
+.hire-form{width:min(100%,920px);margin:0 auto;padding:22px;border-radius:15px;background:#fff;color:#202124}
+.hire-form-head h1{margin:0 0 22px;font-size:28px;font-weight:700;line-height:1.2;letter-spacing:-.04em}
+.hire-form-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+.hire-project-fields,.hire-contact-fields{min-width:0}
+.hire-contact-fields{position:relative;display:flex;flex-direction:column}
+.hire-contact-fields:before{position:absolute;top:0;bottom:0;left:-24px;width:1px;background:#e4e4e7;content:''}
+.hire-options,.hire-preferences{margin:0;padding:0;border:0}
+.hire-options legend,.hire-preferences legend{margin:0 0 10px;padding:0;font-size:15px;font-weight:600}
+.hire-options{margin-bottom:16px}
+.hire-option{position:relative;display:flex;align-items:center;gap:12px;min-height:56px;padding:9px 12px;border-bottom:1px solid #e6e6e9;background:#f2f2f4;cursor:pointer;transition:background .18s}
+.hire-option:first-of-type{border-radius:9px 9px 0 0}
+.hire-option:last-of-type{border:0;border-radius:0 0 9px 9px}
+.hire-option:hover{background:#e8e8eb}
+.hire-option.is-selected{background:#f5e9ea}
+.hire-option input,.hire-preference-list input{position:absolute;opacity:0;width:1px;height:1px}
+.hire-radio{flex:none;width:16px;height:16px;border:1.5px solid #888b91;border-radius:50%;background:#fff}
+.hire-option.is-selected .hire-radio{border:5px solid #7b1720}
+.hire-option>span:last-child{display:grid;gap:2px}
+.hire-option strong{font-size:13px;font-weight:650;line-height:1.2}
+.hire-option small{color:#74777d;font-size:12px;line-height:1.25}
+.hire-field{position:relative;display:block;margin:0 0 16px}
+.hire-field input,.hire-field textarea{display:block;width:100%;height:40px;padding:9px 13px;border:1px solid transparent;border-radius:8px;outline:none;background:#f2f2f4;color:#202124;font:400 14px Inter,sans-serif}
+.hire-field textarea{height:180px;padding-bottom:26px;resize:vertical}
+.hire-field input:focus,.hire-field textarea:focus{border-color:#7b1720;background:#fff}
+.hire-phone-field .PhoneInput{display:flex;align-items:center;gap:10px;min-height:40px;padding:0 11px;border:1px solid transparent;border-radius:8px;background:#f2f2f4}
+.hire-phone-field .PhoneInput:focus-within{border-color:#7b1720;background:#fff}
+.hire-phone-field .PhoneInputCountry{flex:none;margin:0}
+.hire-phone-field .PhoneInputInput{min-width:0;height:38px;padding:7px 0;border:0;background:transparent}
+.hire-phone-field .PhoneInputInput:focus{border:0;background:transparent}
+.hire-phone-field .PhoneInputCountrySelect{cursor:pointer}
+.hire-field input::placeholder,.hire-field textarea::placeholder{color:#777a80}
+.hire-count{position:absolute;right:10px;bottom:9px;color:#85878c;font-size:11px}
+.hire-whatsapp{display:flex;align-items:center;gap:9px;margin:-4px 0 26px;font-size:13px;cursor:pointer}
+.hire-whatsapp input{width:16px;height:16px;accent-color:#7b1720}
+.hire-preferences legend{margin-bottom:12px}
+.hire-preference-list{display:flex;flex-wrap:wrap;gap:8px}
+.hire-preference-list label{position:relative;cursor:pointer}
+.hire-preference-list span{display:block;padding:8px 15px;border-radius:999px;background:#f1f1f3;color:#34363a;font-size:12px;font-weight:600;transition:background .18s}
+.hire-preference-list .is-selected span{background:#f5e9ea;color:#7b1720}
+.hire-preference-list .is-selected span:before{content:'✓ ';font-weight:800}
+.hire-option:has(input:focus-visible),.hire-preference-list label:has(input:focus-visible),.hire-whatsapp:has(input:focus-visible){outline:2px solid #7b1720;outline-offset:2px}
+.hire-error{color:#a53b42;font-size:12px}
+.hire-form-action{margin-top:auto;padding-top:48px}
+.hire-submit{display:block;width:100%;height:44px;border:0;border-radius:8px;background:#7b1720;color:#fff;font:650 14px Inter,sans-serif;cursor:pointer;transition:background .18s,transform .18s}
+.hire-submit:hover{background:#5d1018;transform:translateY(-2px)}
+.hire-disclosure{margin:8px 0 0;color:#777a80;font-size:11px;line-height:1.35;text-align:center}
+@media(max-width:700px){.hire-page{padding:31px 16px 64px}.hire-form{padding:16px;border-radius:16px}.hire-form-head h1{margin:4px 0 20px;font-size:27px}.hire-form-grid{display:block}.hire-contact-fields:before{display:none}.hire-options{margin-bottom:10px}.hire-option{min-height:51px}.hire-field{margin-bottom:12px}.hire-field textarea{height:140px}.hire-whatsapp{margin:-3px 0 14px}.hire-form-action{padding-top:24px}}
+@media(prefers-reduced-motion:reduce){.hire-option,.hire-preference-list span,.hire-submit{transition:none}}

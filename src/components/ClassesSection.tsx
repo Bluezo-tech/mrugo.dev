@@ -23,9 +23,6 @@ function ClassesSection() {
           No classes are scheduled right now. Check back later, or get in touch
           if you'd like to talk about one.
         </p>
-        <p className="todo-note">
-          TODO: class name, date and format for the first class
-        </p>
       </div>
     </section>
   )

@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react'
 import './SocialsSection.css'
 import { SOCIALS } from '../data/content'
 import { LinkedInIcon, PlusIcon } from './Icons'
+import CmsBlocks from './CmsBlocks'
 
 function SocialIconSquare({
   id,
@@ -16,8 +17,8 @@ function SocialIconSquare({
 }) {
   return (
     <span
-      className="social-icon-square"
-      style={{ background: tint } as CSSProperties}
+      className={`social-icon-square social-icon-${id}`}
+      style={{ background: tint, color: color ? `#${color}` : undefined } as CSSProperties}
       aria-hidden="true"
     >
       {id === 'linkedin' ? (
@@ -44,7 +45,7 @@ function SocialsSection() {
           Find me on <span className="gold-text">social media</span>
         </h2>
         <p className="section-intro">
-          Reach me on WhatsApp. More ways to follow my work are coming soon.
+          Message me on WhatsApp or follow my work across these platforms.
         </p>
       </div>
 
@@ -86,13 +87,14 @@ function SocialsSection() {
               </span>
               <span className="social-message-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false">
-                  <path d="M20 11.5a8 8 0 0 1-8.5 8 8.7 8.7 0 0 1-3.3-.8L4 20l1.3-4.1A8 8 0 1 1 20 11.5Z" />
-                  <path d="M8.5 10.5h7M8.5 13.5h5" />
+                  <path d="M14 5h5v5M19 5l-8 8" />
+                  <path d="M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" />
                 </svg>
               </span>
             </a>
           ),
         )}
+        <CmsBlocks slot="socials" />
       </div>
     </section>
   )

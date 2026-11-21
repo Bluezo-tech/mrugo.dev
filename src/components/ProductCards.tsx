@@ -132,6 +132,7 @@ export type SourceCode = {
   tags?: string[];
   priceLabel: string;
   buttonLabel?: string;
+  availabilityLabel?: string;
   onSelect?: () => void;
 };
 
@@ -148,7 +149,7 @@ export function SourceCodeCard({ item }: { item: SourceCode }) {
         <span className="zip-file-text">
           <span className="zip-name">{item.zipName}</span>
           <span className="zip-size">
-            {!item.onSelect ? "No file available yet" : `ZIP archive${item.zipSize ? ` · ${item.zipSize}` : ""}`}
+            {item.availabilityLabel || (!item.onSelect ? "No file available yet" : `ZIP archive${item.zipSize ? ` · ${item.zipSize}` : ""}`)}
           </span>
         </span>
       </div>

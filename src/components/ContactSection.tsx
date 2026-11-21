@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from 'react'
 import { CONTACT } from '../data/content'
 import { ClockIcon, EnvelopeIcon } from './Icons'
+import { submitInquiry } from '../lib/inquiries'
+import InquirySuccess from './InquirySuccess'
 import './ContactSection.css'
 
 const MAX_MESSAGE = 5000
@@ -10,22 +12,22 @@ function ContactSection() {
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false)
+  const [result, setResult] = useState('')
+  const [sent, setSent] = useState(() => window.self !== window.top && new URLSearchParams(window.location.search).has('cms-success'))
 
-  /**
-   * There is no backend and none is being faked. Submitting composes the
-   * message in the visitor's own email app and sends nothing from this site.
-   */
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
-    const subjectLine =
-      subject.trim() || `Portfolio enquiry from ${name.trim() || 'a visitor'}`
-
-    const body = [message.trim(), '', '—', name.trim(), email.trim()].join('\n')
-
-    window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(
-      subjectLine,
-    )}&body=${encodeURIComponent(body)}`
+    const website = String(new FormData(event.currentTarget).get('website') ?? '')
+    setSending(true)
+    setResult('')
+    try {
+      await submitInquiry({ source: 'contact', name: name.trim(), email: email.trim(), subject: subject.trim(), message: message.trim(), website })
+      setSent(true)
+      setName(''); setEmail(''); setSubject(''); setMessage('')
+    } catch (error) {
+      setResult(error instanceof Error ? error.message : 'Could not send your message. Please try again.')
+    } finally { setSending(false) }
   }
 
   return (
@@ -52,7 +54,8 @@ function ContactSection() {
         </span>
       </p>
 
-      <form className="contact-form" onSubmit={handleSubmit}>
+      {sent ? <InquirySuccess title="Message sent" onAgain={() => setSent(false)} /> : <form className="contact-form" onSubmit={handleSubmit}>
+        <label className="sr-only">Leave this field empty<input name="website" type="text" tabIndex={-1} autoComplete="off" /></label>
         <div className="form-columns">
           <label className="form-field form-field-message">
             <span className="form-label">Your message</span>
@@ -99,20 +102,21 @@ function ContactSection() {
 
             <label className="form-field">
               <span className="form-label">
-                Subject <span className="form-optional">Optional</span>
+                Subject
               </span>
               <input
                 className="form-input"
                 type="text"
                 name="subject"
+                required
                 placeholder="What is this about?"
                 value={subject}
                 onChange={(event) => setSubject(event.target.value)}
               />
             </label>
 
-            <button className="form-submit" type="submit">
-              Send message{' '}
+            <button className="form-submit" type="submit" disabled={sending}>
+              {sending ? 'Sending…' : 'Send message'}{' '}
               <svg className="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
@@ -121,10 +125,8 @@ function ContactSection() {
           </div>
         </div>
 
-        <p className="form-note">
-          Opens your email app. Nothing is sent by this website.
-        </p>
-      </form>
+        {result && <p className="form-note" role="status">{result}</p>}
+      </form>}
     </section>
   )
 }

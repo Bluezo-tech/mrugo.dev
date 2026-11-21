@@ -3,11 +3,23 @@ import { Link, useLocation } from 'react-router-dom'
 import Monogram from './Monogram'
 import { NAV_ITEMS, SPY_IDS } from '../data/navigation'
 import { CloseIcon, MenuIcon } from './Icons'
+import SupportModal from './SupportModal'
+import { loadHiddenPages } from '../lib/cmsPages'
 
 function SiteHeader() {
   const { pathname } = useLocation()
   const [activeSection, setActiveSection] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [supportOpen, setSupportOpen] = useState(false)
+  const [hiddenPages, setHiddenPages] = useState<string[]>([])
+
+  useEffect(() => { void loadHiddenPages().then(setHiddenPages).catch(() => {}) }, [pathname])
+
+  useEffect(() => {
+    document.documentElement.removeAttribute('data-theme')
+    document.documentElement.style.colorScheme = 'light'
+    window.localStorage.removeItem('ugo-theme')
+  }, [])
 
   const onHome = pathname === '/'
   const onExperience = pathname === '/experience'
@@ -72,7 +84,9 @@ function SiteHeader() {
   }, [menuOpen])
 
   return (
+    <>
     <header className={menuOpen ? 'site-header is-menu-open' : 'site-header'}>
+      <div className="site-header-inner">
       <Link
         className="brand"
         to="/"
@@ -86,11 +100,18 @@ function SiteHeader() {
       {/* Bayo-style nav: one nav element, inline on desktop,
           dropdown panel below 1000px when the header is open */}
       <nav className="nav-links" id="site-menu" aria-label="Main navigation">
-        {NAV_ITEMS.map(({ label, to, Icon, spyId }) => {
+        {NAV_ITEMS.filter(({ to }) => !hiddenPages.includes(to)).map(({ label, to, Icon, spyId }) => {
           const isExperience = label === 'Experience'
           const isActive =
             pathname === to ||
             (isExperience ? onExperience : active === spyId)
+
+          if (to === '/support') {
+            return <button key={label} type="button" className="nav-support" aria-haspopup="dialog" onClick={() => { setMenuOpen(false); setSupportOpen(true) }}>
+              <Icon className="nav-icon" />
+              <span className="nav-label">{label}</span>
+            </button>
+          }
 
           return (
             <Link
@@ -102,7 +123,17 @@ function SiteHeader() {
               }
               aria-label={label}
               title={label}
-              onClick={() => setMenuOpen(false)}
+              onClick={(event) => {
+                setMenuOpen(false)
+                // React Router sees the same URL on a repeated hash click, so
+                // the layout's hash effect will not run again.
+                if (to === '/#contact' && pathname === '/' && window.location.hash === '#contact') {
+                  event.preventDefault()
+                  window.requestAnimationFrame(() => {
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'instant', block: 'start' })
+                  })
+                }
+              }}
             >
               <Icon className="nav-icon" />
               <span className="nav-label">{label}</span>
@@ -110,6 +141,7 @@ function SiteHeader() {
           )
         })}
       </nav>
+
 
       {/* Menu button — visible below 1000px only, via CSS */}
       <button
@@ -126,7 +158,10 @@ function SiteHeader() {
           <MenuIcon className="menu-toggle-icon" />
         )}
       </button>
+      </div>
     </header>
+    {supportOpen && <SupportModal onClose={() => setSupportOpen(false)} />}
+    </>
   )
 }
 

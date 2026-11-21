@@ -7,17 +7,20 @@ export default function CountUp({ value, suffix = '' }: { value: number; suffix?
   useEffect(() => {
     const element = ref.current
     if (!element) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-      setCount(value)
-      return
-    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return
 
     let frame = 0
-    let started = false
+    let wasVisible = false
     const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting || started) return
-      started = true
-      observer.disconnect()
+      const isVisible = entry.isIntersecting
+      if (!isVisible) {
+        wasVisible = false
+        cancelAnimationFrame(frame)
+        return
+      }
+      if (wasVisible) return
+      wasVisible = true
+      setCount(0)
       const start = performance.now()
       const duration = 1100
       const tick = (now: number) => {
@@ -25,6 +28,7 @@ export default function CountUp({ value, suffix = '' }: { value: number; suffix?
         const eased = 1 - (1 - progress) ** 3
         setCount(Math.round(value * eased))
         if (progress < 1) frame = requestAnimationFrame(tick)
+        else setCount(value)
       }
       frame = requestAnimationFrame(tick)
     }, { threshold: 0.25 })
@@ -35,6 +39,6 @@ export default function CountUp({ value, suffix = '' }: { value: number; suffix?
     }
   }, [value])
 
-  const displayed = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? value : count
+  const displayed = typeof window !== 'undefined' && (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) ? value : count
   return <span ref={ref}>{displayed}{suffix}</span>
 }

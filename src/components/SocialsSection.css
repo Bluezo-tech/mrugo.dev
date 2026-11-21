@@ -13,6 +13,8 @@
   align-items: center;
 }
 .socials-section .social-icon-square { width: 48px; height: 48px; flex: 0 0 48px; }
+.socials-section .social-brand-icon { color: inherit; }
+.socials-section .social-icon-tiktok img { filter: drop-shadow(-1px -1px 0 #25f4ee) drop-shadow(1px 1px 0 #fe2c55); }
 .socials-section .social-card-text { min-width: 0; gap: 3px; }
 .socials-section .social-name { font-size: 1rem; }
 .socials-section .social-detail { font-size: .85rem; }
@@ -28,8 +30,8 @@
   height: 36px;
   margin-left: auto;
   border-radius: 10px;
-  background: rgba(200,139,17,.12);
-  color: var(--gold-dark);
+  background: rgba(123,23,32,.08);
+  color: var(--accent);
 }
 .socials-section .social-message-icon svg { width: 19px; height: 19px; }
 @media (max-width: 700px) {
@@ -69,3 +71,6 @@
   .socials-section .social-card { transition: none; }
   .socials-section a.social-card:hover { transform: none; }
 }
+.socials-section .cms-social-card .social-icon-square{display:grid;place-items:center;font-weight:800;font-size:1.1rem;color:var(--accent);background:rgba(123,23,32,.08)}
+.socials-section .cms-social-card .social-icon-square img{width:26px;height:26px;object-fit:contain}
+.socials-section .cms-social-card .social-mark{margin-left:auto;color:var(--accent);font-size:1.2rem}

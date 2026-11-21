@@ -4,13 +4,6 @@ import CountUp from './CountUp'
 
 /** Small line icons drawn for these stat cards (not a copied icon set). */
 const STAT_ICONS: Record<string, ReactElement> = {
-  years: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-      <rect x="3" y="5" width="18" height="16" rx="3" />
-      <path d="M8 3v4M16 3v4M3 10h18" />
-      <path d="M8 14h3v3H8z" />
-    </svg>
-  ),
   skills: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 3l8 4.5-8 4.5-8-4.5L12 3z" />

@@ -30,37 +30,37 @@
 
 /* ========================================
    DESIGN TOKENS
-   Values verified from the reference site (README section 8).
+   Portfolio palette: cool neutral surfaces, deep ink, restrained blue.
 ======================================== */
 
 :root {
   /* Surfaces */
-  --bg: #f3eee3;
-  --surface: rgba(255, 255, 255, 0.72);
-  --border: rgba(0, 0, 0, 0.08); /* ~#00000014 */
+  --bg: #f5f5f7;
+  --surface: rgba(255, 255, 255, 0.94);
+  --border: rgba(20, 39, 62, 0.13);
 
   /* Text */
-  --text: #666666;
-  --text-h: #111827;
-  --card-title: #1f1f1f;
-  --nav: #3d3d3d;
-  --muted: #9a9a9a;
+  --text: #585b61;
+  --text-h: #18191c;
+  --card-title: #202124;
+  --nav: #34363a;
+  --muted: #71747a;
 
-  /* Gold accent and its headline gradient */
-  --accent: #c88b11;
-  --accent-from: #c99022;
-  --accent-mid: #e4b248;
-  --accent-to: #c98917;
-  --gold-light: #e4b248;
-  --gold-dark: #8a6a1e;
+  /* Shared accent */
+  --accent: #7b1720;
+  --accent-from: #7b1720;
+  --accent-mid: #7b1720;
+  --accent-to: #7b1720;
+  --gold-light: #d5e8f4;
+  --gold-dark: #6e1119;
 
   /* Buttons */
-  --button: #111111;
-  --button-hover: #000000;
+  --button: #18191c;
+  --button-hover: #951d28;
 
   /* Dark surfaces */
-  --dark: #141414;
-  --dark-soft: rgba(20, 20, 20, 0.92);
+  --dark: #18191c;
+  --dark-soft: rgba(16, 36, 58, 0.95);
   --strip-text: #e7e7e7;
   --footer-link: #cfcfcf;
 
@@ -93,7 +93,7 @@
 
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);

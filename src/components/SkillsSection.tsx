@@ -8,10 +8,6 @@ function SkillsSection() {
         <h2>
           Skills and tools I <span className="gold-text">build with.</span>
         </h2>
-        <p className="section-intro">
-          The technologies I use and keep working with, grouped by where they sit
-          in a project.
-        </p>
       </div>
 
       <div className="skills-grid">
@@ -24,8 +20,8 @@ function SkillsSection() {
                 <li className="skills-item" key={skill.name}>
                   {skill.icon ? (
                     <img
-                      className="skills-icon"
-                      src={`https://cdn.simpleicons.org/${skill.icon.slug}/${skill.icon.onLight}`}
+                      className={`skills-icon${skill.name === 'Canva' ? ' is-wordmark' : ''}`}
+                      src={skill.icon.src ?? `https://cdn.simpleicons.org/${skill.icon.slug}/${skill.icon.onLight}`}
                       alt=""
                       loading="lazy"
                     />
