@@ -1,15 +1,15 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig, loadEnv, type Plugin } from 'vite'
 
-const publicRoutes = ['/', '/about', '/experience', '/projects', '/socials', '/hire']
+const publicRoutes = ['/', '/about', '/experience', '/projects', '/source-code', '/ebooks', '/classes', '/socials', '/hire']
 
 function publicSiteMetadata(siteUrl: string, indexable: boolean): Plugin {
   const base = siteUrl.replace(/\/$/, '')
   return {
     name: 'public-site-metadata',
     transformIndexHtml(html) {
-      if (!base) return html
-      return html.replace('<!-- PUBLIC_SITE_METADATA -->', [
+      if (!base) return html.replace('"url":"PUBLIC_PERSON_URL",', '')
+      return html.replace('PUBLIC_PERSON_URL', `${base}/`).replace('<!-- PUBLIC_SITE_METADATA -->', [
         `<meta property="og:url" content="${base}/" />`,
         `<meta property="og:image" content="${base}/share-card.svg" />`,
         `<meta name="twitter:image" content="${base}/share-card.svg" />`,

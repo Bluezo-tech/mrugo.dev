@@ -43,7 +43,7 @@ function SiteFooter() {
           <button type="button" onClick={() => setSupportOpen(true)}>Support</button>
         </nav>
       </div>
-      <div className="footer-bottom"><span>© {CURRENT_YEAR} Chukwuekem Melchizedek.</span><span>Mr Ugo · Portfolio</span><a href="https://www.exchangerate-api.com" target="_blank" rel="noreferrer">Rates By Exchange Rate API</a></div>
+      <div className="footer-bottom"><span>© {CURRENT_YEAR} Chukwuekem Melchizedek.</span><span>mrugo.dev</span><a href="https://www.exchangerate-api.com" target="_blank" rel="noreferrer">Rates By Exchange Rate API</a></div>
     </footer>
     {supportOpen && <SupportModal onClose={() => setSupportOpen(false)} />}
     </>

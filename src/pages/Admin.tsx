@@ -84,6 +84,30 @@ export default function Admin() {
     return () => { active = false }
   }, [session])
 
+  useEffect(() => {
+    if (!supabase || !session || !authorized) return
+    const client = supabase
+    let active = true
+    const refreshInbox = async () => {
+      if (document.hidden) return
+      const { data, error } = await client.from('portfolio_inquiries')
+        .select('id,created_at,source,name,email,subject,message,project_type,phone,whatsapp,preferred_contact,status')
+        .order('created_at', { ascending: false }).limit(200)
+      if (active && !error) setInquiries((data ?? []) as Inquiry[])
+    }
+    const timer = window.setInterval(() => { void refreshInbox() }, 30000)
+    const onVisible = () => { if (!document.hidden) void refreshInbox() }
+    document.addEventListener('visibilitychange', onVisible)
+    return () => { active = false; window.clearInterval(timer); document.removeEventListener('visibilitychange', onVisible) }
+  }, [session, authorized])
+
+  const newMessageCount = inquiries.filter((item) => item.status === 'new').length
+  useEffect(() => {
+    const originalTitle = document.title
+    if (authorized) document.title = newMessageCount ? `(${newMessageCount}) Messages · Mr Ugo CMS` : 'Mr Ugo CMS'
+    return () => { document.title = originalTitle }
+  }, [authorized, newMessageCount])
+
   const signIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!supabase) return
@@ -163,7 +187,7 @@ export default function Admin() {
           {desktop && <button type="button" className={view === 'blocks' ? 'is-active' : ''} onClick={() => setView('blocks')}>Add sections</button>}
           {desktop && <button type="button" className={view === 'design' ? 'is-active' : ''} onClick={() => setView('design')}>Site design</button>}
           {desktop && <button type="button" className={view === 'products' ? 'is-active' : ''} onClick={() => setView('products')}>Products</button>}
-          <button type="button" className={view === 'messages' ? 'is-active' : ''} onClick={() => setView('messages')}>Messages</button>
+          <button type="button" className={view === 'messages' ? 'is-active' : ''} onClick={() => setView('messages')}>Messages{newMessageCount > 0 && <span className="admin-new-count" aria-label={`${newMessageCount} new messages`}>{newMessageCount}</span>}</button>
           <button type="button" className={view === 'replies' ? 'is-active' : ''} onClick={() => setView('replies')}>Reply text</button>
           <button type="button" className={view === 'receipts' ? 'is-active' : ''} onClick={() => setView('receipts')}>Receipts</button>
         </nav>
