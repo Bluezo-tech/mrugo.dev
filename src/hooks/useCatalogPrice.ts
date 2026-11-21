@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { quoteDollarSupport } from '../lib/payments'
 import { priceLabel, type Product } from '../lib/products'
-import { detectSupportCurrency } from '../utils/shop'
+import { useSupportCurrency } from './useSupportCurrency'
 
 export function useCatalogPrice() {
-  const [currency] = useState(detectSupportCurrency)
+  const currency = useSupportCurrency()
   const [ngnPerUsd, setNgnPerUsd] = useState<number | null>(null)
 
   useEffect(() => {
