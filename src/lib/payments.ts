@@ -30,9 +30,9 @@ export async function quoteDollarSupport(amount: number) {
   return paymentRequest<{ amount_ngn: number; rate_updated_at: string }>('quote', { amount })
 }
 
-export async function supportRegion(): Promise<SupportCurrency | null> {
-  const result = await paymentRequest<{ currency: SupportCurrency | null }>('region', {})
-  return result.currency === 'NGN' || result.currency === 'USD' ? result.currency : null
+export async function supportRegion(): Promise<string | null> {
+  const result = await paymentRequest<{ country: string | null }>('region', {})
+  return typeof result.country === 'string' && /^[A-Z]{2}$/.test(result.country) ? result.country : null
 }
 
 export async function paymentStatus(reference: string, access: string) {

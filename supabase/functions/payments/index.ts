@@ -119,9 +119,7 @@ Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return respond(200, { ok: true }, origin)
   if (req.method !== 'POST') return respond(405, { error: 'Method not allowed.' }, origin)
   const visitorCountry = req.headers.get('cf-ipcountry')
-  const regionalCurrency = visitorCountry && /^[A-Z]{2}$/.test(visitorCountry)
-    ? (visitorCountry === 'NG' ? 'NGN' : 'USD') : null
-  if (path === 'region') return respond(200, { currency: regionalCurrency }, origin)
+  if (path === 'region') return respond(200, { country: visitorCountry && /^[A-Z]{2}$/.test(visitorCountry) ? visitorCountry : null }, origin)
   const db = database()
   if (!db || !paystackKey()) return respond(503, { error: 'Payments are not ready yet.' }, origin)
   const raw = await req.text()
@@ -151,7 +149,6 @@ Deno.serve(async (req) => {
     if (input.kind === 'support') {
       kind = 'support'; currency = input.currency === 'USD' ? 'USD' : input.currency === 'NGN' ? 'NGN' : ''
       if (!validSupportAmount(input.amount, currency)) return respond(400, { error: 'Choose a valid support amount.' }, origin)
-      if (regionalCurrency && currency !== regionalCurrency) return respond(409, { error: 'Your location changed. Please reopen Support to see the amount for your region.' }, origin)
       const amount = input.amount as number
       amountMinor = amount * 100
       title = 'Support Mr Ugo'

@@ -74,46 +74,9 @@ export function purchaseModeFor(
   return "soon";
 }
 
-// ---- Dynamic support currency — family voting, tightened ----
-// Bayo's modal is region-aware: Nigeria sees NGN, outside sees USD.
-// Ugo's rule (clarified 2026-10-29): the same defaults, BUT decided
-// from several signals, not region/IP alone — a Nigerian on a VPN
-// can appear to be in another country, and must still get NGN.
-// Tightened the same day, also by Ugo's call: timezone and UTC
-// offset are ONE family, not two votes (the offset comes from the
-// timezone, so counting both let a single timezone change flip
-// the result on its own). Each independent family votes once:
-//   - Timezone family: Africa/Lagos votes NGN, any other zone
-//     votes USD. The offset only CONFIRMS the zone: Lagos is
-//     UTC+1 all year, so if the offset is not -60 the timezone
-//     data is inconsistent (or spoofed) and this family abstains.
-//   - Language family: en-NG in the device languages votes NGN,
-//     any other language votes USD.
-//   - IP family, ONLY when a caller passes a country (backend /
-//     geo-IP lookup): NG votes NGN, anywhere else votes USD.
-// Majority of families wins. A 1-1 tie is broken by the timezone
-// family, because location is what a display currency is for;
-// with no votes at all, the fallback is USD.
-// Worked examples:
-//   Nigerian at home (Lagos zone, en-NG): NGN wins 2-0, or 3-0
-//     with a Nigerian IP. A foreign VPN changes no family that
-//     matters — the IP family at worst abstains into a tie the
-//     timezone then settles as NGN. Correct.
-//   Nigerian in Canada, zone on automatic (Toronto, en-NG):
-//     USD wins the tie-break, and outright with a Canadian IP.
-//     Correct — changing timezone alone did not decide it, the
-//     language family was outvoted / out-tied.
-//   Visitor abroad who sets their zone to Lagos by hand, device
-//     not en-NG, real IP not Nigerian: at best a 1-1 tie without
-//     an IP signal, an outright USD win with one. One changed
-//     setting no longer flips anyone by itself.
-//   Honest limit: a Nigerian at home whose device language is
-//     en-US shows the same signals as that hand-set case above —
-//     1-1, settled by the timezone as NGN. An IP signal would
-//     settle it properly when a backend exists.
-// Browser GPS geolocation is deliberately NOT used: asking a
-// visitor for location permission just to pick a display currency
-// would scare people off a support button.
+// The device timezone leads the display choice. Language and IP country
+// also contribute, but neither a VPN nor an IP lookup alone can override
+// a known timezone. Without a timezone, the other signals decide.
 
 export type SupportCurrency = "USD" | "NGN";
 
@@ -167,7 +130,7 @@ export function detectSupportCurrency(ipCountry?: string): SupportCurrency {
   } else if (timeZone) {
     timezoneVote = "USD";
   }
-  if (timezoneVote) votes.push(timezoneVote);
+  if (timezoneVote) votes.push(timezoneVote, timezoneVote);
 
   // 3) Language family — one vote.
   if (typeof navigator !== "undefined") {
